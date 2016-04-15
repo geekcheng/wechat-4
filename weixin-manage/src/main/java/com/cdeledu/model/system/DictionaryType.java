@@ -27,6 +27,8 @@ public class DictionaryType implements Serializable {
 	private Integer dictCode;
 	// 字典是否删除
 	private Integer delStatus;
+	// 用于指定显示顺序
+	private Integer sort;
 	// 字典使用的备注说明
 	private String remark;
 	// 创建时间
@@ -64,6 +66,14 @@ public class DictionaryType implements Serializable {
 
 	public void setDelStatus(Integer delStatus) {
 		this.delStatus = delStatus;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 
 	public String getRemark() {

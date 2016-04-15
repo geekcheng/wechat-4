@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sys_dictionary_data")
 @PrimaryKeyJoinColumn(name = "id")
-public class Dictionarydata implements Serializable {
+public class DictionaryData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	// 字典类型编码
@@ -35,87 +35,75 @@ public class Dictionarydata implements Serializable {
 	private Integer parentId;
 	// 用于逻辑删除数据
 	private Integer iscancle;
+	//用于指定显示顺序
+	private Integer sort;
 	// 创建时间
 	private Date createTime;
 	// 最后修改时间
 	private Date lastEditTime;
-
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public Integer getDictValue() {
 		return dictValue;
 	}
-
 	public void setDictValue(Integer dictValue) {
 		this.dictValue = dictValue;
 	}
-
 	public String getDictDateName() {
 		return dictDateName;
 	}
-
 	public void setDictDateName(String dictDateName) {
 		this.dictDateName = dictDateName;
 	}
-
 	public String getDictDateCode() {
 		return dictDateCode;
 	}
-
 	public void setDictDateCode(String dictDateCode) {
 		this.dictDateCode = dictDateCode;
 	}
-
 	public String getDictDateDesc() {
 		return dictDateDesc;
 	}
-
 	public void setDictDateDesc(String dictDateDesc) {
 		this.dictDateDesc = dictDateDesc;
 	}
-
 	public Integer getIsfixed() {
 		return isfixed;
 	}
-
 	public void setIsfixed(Integer isfixed) {
 		this.isfixed = isfixed;
 	}
-
 	public Integer getParentId() {
 		return parentId;
 	}
-
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
-
 	public Integer getIscancle() {
 		return iscancle;
 	}
-
 	public void setIscancle(Integer iscancle) {
 		this.iscancle = iscancle;
 	}
-
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 	public Date getCreateTime() {
 		return createTime;
 	}
-
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
 	public Date getLastEditTime() {
 		return lastEditTime;
 	}
-
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
 	}

@@ -33,4 +33,46 @@ public class OperateLog implements Serializable {
 	private String remark;
 	// 记录时间
 	private Date createTime;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getUserCode() {
+		return userCode;
+	}
+	public void setUserCode(Integer userCode) {
+		this.userCode = userCode;
+	}
+	public String getMacAddress() {
+		return macAddress;
+	}
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
+	}
+	public String getOpType() {
+		return opType;
+	}
+	public void setOpType(String opType) {
+		this.opType = opType;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 }

@@ -9,3 +9,5 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%--当前Context --%>
+<c:set var="_currConText" value="<%=request.getContextPath()%>"/>
