@@ -1,20 +1,25 @@
-package com.cdeledu.model.rbac;
+package com.cdeledu.model.system;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 /**
- * 
- * @ClassName: ResourceBean
- * @Description: <ul>
- *               <li>RBAC（Role-Based Access Control:基于角色的访问控制）</li>
- *               <li>资源表实体类</li>
- *               </ul>
- * @author: 独泪了无痕
- * @date: 2015-8-23 下午10:08:30
- * @version: V1.0
+ * @类描述: 资源表实体类
+ * @创建者: 皇族灬战狼
+ * @创建时间: 2016年4月15日 下午12:03:36
+ * @版本: V2.0
+ * @since: JDK 1.7
+ * @see <a href="">TODO(连接内容简介)</a>
  */
+@Entity
+@Table(name = "sys_resource")
+@PrimaryKeyJoinColumn(name = "id")
 public class ResourceBean implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	// 资源名称
 	private String text;
 	// 图标名称
@@ -22,11 +27,19 @@ public class ResourceBean implements Serializable {
 	// 资源地址
 	private String resourceUrl;
 	// 资源类型
-	private int type;
+	private Integer type;
 	// 资源描述
 	private String resourceDesc;
 	// 状态
-	private int state;
+	private Integer state;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getText() {
 		return text;
@@ -52,11 +65,11 @@ public class ResourceBean implements Serializable {
 		this.resourceUrl = resourceUrl;
 	}
 
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 
@@ -68,11 +81,12 @@ public class ResourceBean implements Serializable {
 		this.resourceDesc = resourceDesc;
 	}
 
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
+
 }

@@ -1,6 +1,7 @@
 package com.cdeledu.model.rbac;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -10,7 +11,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: UserRoleId
  * @Description:
- * 				<ul>
+ *               <ul>
  *               <li>RBAC（Role-Based Access Control:基于角色的访问控制）</li>
  *               <li>角色表实体类</li> </ul
  * @author: 独泪了无痕
@@ -29,6 +30,8 @@ public class RoleInfo implements Serializable {
 	private String roleDesc;
 	// 是否禁用(0:false;1:true;默认值是0)
 	private int stats;
+	// 创建时间
+	private Date createTime;
 
 	public Integer getId() {
 		return id;
@@ -60,5 +63,13 @@ public class RoleInfo implements Serializable {
 
 	public void setStats(int stats) {
 		this.stats = stats;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }
