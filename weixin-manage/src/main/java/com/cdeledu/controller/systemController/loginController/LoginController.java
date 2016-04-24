@@ -1,4 +1,4 @@
-package com.cdeledu.controller.systemController;
+package com.cdeledu.controller.systemController.loginController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
