@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdeledu.controller.BaseController;
+
 /**
  * @类描述: 日志处理类
  * @创建者: 独泪了无痕--duleilewuhen@sina.com
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/logController")
-public class LogViewController {
+public class LogViewController  extends BaseController{
 	/** ----------------------------------------------------- Fields start */
 
 	/** ----------------------------------------------------- Fields end */

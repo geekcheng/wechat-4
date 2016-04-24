@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.cdeledu.controller.BaseController;
+
 /**
  * @类描述: 菜单数据控制类
  * @创建者: 独泪了无痕--duleilewuhen@sina.com
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @RequestMapping("/MenuView")
 @SessionAttributes("managerUser")
-public class MenuViewController {
+public class MenuViewController  extends BaseController{
 	/** ----------------------------------------------------- Fields start */
 
 	/** ----------------------------------------------------- Fields end */
