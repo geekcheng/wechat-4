@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: UserRoleId
  * @Description:
- *               <ul>
+ * 				<ul>
  *               <li>RBAC（Role-Based Access Control:基于角色的访问控制）</li>
  *               <li>角色表实体类</li> </ul
  * @author: 独泪了无痕
@@ -21,11 +21,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "t_system_role")
 @PrimaryKeyJoinColumn(name = "id")
-public class RoleInfo implements Serializable {
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	// 角色名称
 	private String roleName;
+	// 角色编码
+	private String roleCode;
 	// 角色说明或者备注
 	private String roleDesc;
 	// 是否禁用(0:false;1:true;默认值是0)
@@ -47,6 +49,14 @@ public class RoleInfo implements Serializable {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
 	}
 
 	public String getRoleDesc() {

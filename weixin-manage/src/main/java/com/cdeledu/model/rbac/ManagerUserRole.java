@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @version: V1.0
  */
 @Entity
-@Table(name = "t_system_managerUser_role_relation")
+@Table(name = "t_system_managerUser_role")
 @PrimaryKeyJoinColumn(name = "id")
 public class ManagerUserRole implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cdeledu.constant.Globals;
 import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.rbac.ManagerUser;
-import com.cdeledu.model.rbac.RoleInfo;
+import com.cdeledu.model.rbac.Role;
 import com.cdeledu.service.SystemService;
 import com.cdeledu.util.ResourceUtil;
 
@@ -45,7 +45,7 @@ public class RoleOperateController {
 	 * @创建人:独泪了无痕
 	 * @param role
 	 */
-	protected void delRoleFunction(RoleInfo role) {
+	protected void delRoleFunction(Role role) {
 
 	}
 
@@ -59,7 +59,7 @@ public class RoleOperateController {
 	 */
 	@RequestMapping(params = "saveRole")
 	@ResponseBody
-	public AjaxJson saveRole(HttpServletRequest request, HttpServletResponse response, RoleInfo role) {
+	public AjaxJson saveRole(HttpServletRequest request, HttpServletResponse response, Role role) {
 		AjaxJson resultMsg = new AjaxJson();
 		if (null != role) {
 			if (StringUtils.isNotEmpty(String.valueOf(role.getId()))) {
@@ -83,7 +83,7 @@ public class RoleOperateController {
 	 */
 	@RequestMapping(params = "delRole")
 	@ResponseBody
-	public AjaxJson delRole(HttpServletRequest request, HttpServletResponse response, RoleInfo role) {
+	public AjaxJson delRole(HttpServletRequest request, HttpServletResponse response, Role role) {
 		AjaxJson resultMsg = new AjaxJson();
 		ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		// 删除角色之前先删除角色权限关系

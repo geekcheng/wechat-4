@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @history:
  */
 @Entity
-@Table(name = "sys_auth")
+@Table(name = "t_system_auth")
 @PrimaryKeyJoinColumn(name = "id")
 public class AuthBean implements Serializable {
 
