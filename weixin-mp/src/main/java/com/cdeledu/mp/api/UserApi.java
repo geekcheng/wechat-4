@@ -55,7 +55,6 @@ public class UserApi extends MpApi {
 	
 	public User getUser(String openId, LangType lang) throws WeixinException {
 		String api_user_info_uri = getRequestUri("api_user_info_uri");
-		System.out.println(api_user_info_uri);
 		return null;
 	}
 

@@ -18,9 +18,9 @@ import javax.persistence.Table;
  * @version: V1.0
  */
 @Entity
-@Table(name = "t_system_role_function")
+@Table(name = "t_system_role_menu")
 @PrimaryKeyJoinColumn(name = "id")
-public class RoleFunction implements Serializable {
+public class RoleMenuInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	// 角色id

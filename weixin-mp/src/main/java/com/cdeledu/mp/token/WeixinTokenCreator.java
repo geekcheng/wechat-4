@@ -1,6 +1,8 @@
 package com.cdeledu.mp.token;
 
 import com.cdeledu.exception.WeixinException;
+import com.cdeledu.http.WeixinRequestExecutor;
+import com.cdeledu.http.WeixinResponse;
 import com.cdeledu.model.TokenBean;
 import com.cdeledu.token.TokenCreator;
 import com.cdeledu.util.WeiXinConstants;
@@ -20,10 +22,12 @@ public class WeixinTokenCreator implements TokenCreator {
 	private final String appid;
 	// 第三方用户唯一凭证密钥,即appsecret(公众号secret)
 	private final String secret;
+	private final WeixinRequestExecutor weixinExecutor;
 
 	public WeixinTokenCreator(String appid, String secret) {
 		this.appid = appid;
 		this.secret = secret;
+		this.weixinExecutor = new WeixinRequestExecutor();
 	}
 
 	public String getCacheKey() {
@@ -32,7 +36,7 @@ public class WeixinTokenCreator implements TokenCreator {
 
 	public TokenBean createToken() throws WeixinException {
 		String tokenUrl = String.format(WeiXinConstants.ASSESS_TOKEN_URL, appid, secret);
-		System.out.println(tokenUrl);
+		WeixinResponse response = weixinExecutor.get(tokenUrl);
 		return null;
 	}
 }

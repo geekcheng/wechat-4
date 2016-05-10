@@ -1,5 +1,7 @@
 package com.cdeledu.http;
 
+import org.apache.http.HttpResponse;
+
 /**
  * 
  * @ClassName: WeixinResponse
@@ -9,4 +11,40 @@ package com.cdeledu.http;
  * @since: JDK 1.7
  */
 public class WeixinResponse {
+	private boolean isJsonResult;
+	private boolean isXmlResult;
+	private volatile String text;
+	private final HttpResponse response;
+
+	public WeixinResponse(HttpResponse response) {
+		this.response = response;
+	}
+
+	public boolean isJsonResult() {
+		return isJsonResult;
+	}
+
+	public void setJsonResult(boolean isJsonResult) {
+		this.isJsonResult = isJsonResult;
+	}
+
+	public boolean isXmlResult() {
+		return isXmlResult;
+	}
+
+	public void setXmlResult(boolean isXmlResult) {
+		this.isXmlResult = isXmlResult;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public HttpResponse getResponse() {
+		return response;
+	}
 }

@@ -2,6 +2,7 @@ package com.cdeledu.util;
 
 import java.util.ResourceBundle;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.cdeledu.constant.Globals;
@@ -17,16 +18,37 @@ import com.cdeledu.model.rbac.ManagerUser;
  */
 public class ResourceUtil {
 	/** ----------------------------------------------------- Fields start */
-	private static final ResourceBundle bundle = ResourceBundle.getBundle("sysConfig");
+	private static final ResourceBundle sysConfig = ResourceBundle.getBundle("sysConfig");
+	private static final ResourceBundle dbConfig = ResourceBundle.getBundle("dbConfig");
 
 	/** ----------------------------------------------------- Fields end */
+	/**
+	 * @方法:获取项目配置文件参数
+	 * @创建人:独泪了无痕
+	 * @param name
+	 * @return
+	 */
+	public static final String getConfigByName(String name) {
+		return sysConfig.getString(name);
+	}
+
+	/**
+	 * @方法:TODO(这里用一句话描述这个方法的作用)
+	 * @创建人:独泪了无痕
+	 * @param sessionName
+	 * @return
+	 */
+	public static final String getSessionattachmenttitle(String sessionName) {
+		return sysConfig.getString(sessionName);
+	}
+
 	/**
 	 * @方法:获取数据库类型
 	 * @创建人:独泪了无痕
 	 * @return
 	 */
 	public static final String getJdbcUrl() {
-		return bundle.getString("database.dbUrl").toLowerCase();
+		return dbConfig.getString("database.dbUrl").toLowerCase();
 	}
 
 	/**
@@ -46,5 +68,20 @@ public class ResourceUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @方法:获得请求路径
+	 * @创建人:独泪了无痕
+	 * @param request
+	 * @return
+	 */
+	public static String getRequestPath(HttpServletRequest request) {
+		String requestPath = request.getRequestURI() + "?" + request.getQueryString();
+		if (requestPath.indexOf("&") > -1) {// 去掉其他参数
+			requestPath = requestPath.substring(0, requestPath.indexOf("&"));
+		}
+		requestPath = requestPath.substring(request.getContextPath().length() + 1);// 去掉项目路径
+		return requestPath;
 	}
 }

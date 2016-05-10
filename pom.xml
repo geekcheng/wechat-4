@@ -186,6 +186,11 @@
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.13</version>
+		</dependency>
 		<!-- 数据库相关依赖包 (结束) -->
 
 		<!-- springSource (开始) -->

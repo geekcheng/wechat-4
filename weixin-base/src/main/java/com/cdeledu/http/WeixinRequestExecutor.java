@@ -2,6 +2,8 @@ package com.cdeledu.http;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.cdeledu.exception.WeixinException;
 
 /**
@@ -12,9 +14,31 @@ import com.cdeledu.exception.WeixinException;
  * @history:
  */
 public class WeixinRequestExecutor {
+	/** ----------------------------------------------------- Fields start */
+	protected final Logger logger = Logger.getLogger(getClass());
+
+	/** ----------------------------------------------------- Fields end */
+	/** ---------------------------------------------- PrivateMethod start */
+	private WeixinResponse doRequest(HttpRequest request) throws WeixinException {
+		try {
+			// 请求日志
+			logger.info("weixin request >> " + request.getMethod() + " " + request.getUri().toString());
+			HttpResponse httpResponse= null;
+			logger.info("weixin response << " + httpResponse.getProtocol()
+			+ httpResponse.getStatus().toString() );
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	/**
+	 * ----------------------------------------------- PrivateMethod start
+	 */
 
 	public WeixinResponse get(String url) throws WeixinException {
-		return null;
+		HttpRequest request = new HttpRequest(HttpMethod.GET, url);
+		return doRequest(request);
 	}
 
 	public WeixinResponse get(String url, Map<String, String> parameters) throws WeixinException {
@@ -22,10 +46,12 @@ public class WeixinRequestExecutor {
 	}
 
 	public WeixinResponse post(String url) throws WeixinException {
-		return null;
+		HttpRequest request = new HttpRequest(HttpMethod.POST, url);
+		return doRequest(request);
 	}
 
 	public WeixinResponse post(String url, String body) throws WeixinException {
 		return null;
 	}
+
 }
