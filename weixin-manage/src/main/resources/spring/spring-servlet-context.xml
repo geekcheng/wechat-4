@@ -9,28 +9,30 @@
 	<!--自动扫描的包名 -->
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<!-- 加载controller的时候,不加载service,因为此时事物并未生效,若此时加载了service,那么事物无法对service进行拦截 -->
-	<context:component-scan base-package="com.cdeledu.*">
+	<context:component-scan base-package="com.cdeledu"
+		use-default-filters="false">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
 	<!-- 默认的注解映射的支持 -->
-	<mvc:annotation-driven >
+	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
-		<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-			<property name="supportedMediaTypes">
-				<list>
-					<value>text/plain;charset=UTF-8</value>
-					<value>application/json;charset=UTF-8</value>
-					<value>application/x-www-form-urlencode</value>
-				</list>
-			</property>
-		</bean>
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+						<value>application/x-www-form-urlencode</value>
+					</list>
+				</property>
+			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
 	<!-- ====================================================================== 
-		默认的视图解析器 (如果你要访问index视图,它会自动 prefix(前缀)+index+suffix(后缀) -->
+		默认的模型视图名称解析器 (如果你要访问index视图,它会自动 prefix(前缀)+index+suffix(后缀) -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -64,8 +66,8 @@
 	<!-- 容器默认的defaultServletHandler处理所有静态内容与RequestMapping处理的URL -->
 	<mvc:default-servlet-handler />
 	<!-- 静态资源 -->
-	<mvc:resources mapping="/images/**" location="/images/" /> 
-	<mvc:resources mapping="/css/**" location="/css/" /> 
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 
 	<!-- 避免IE执行AJA时候，返回JSON出现下载文件 -->
@@ -86,7 +88,7 @@
 		<!-- 定义默认的异常处理页面，当该异常类型的注册时使用. 默认为500，系统错误(error.jsp) -->
 		<property name="defaultErrorView" value="500" />
 		<!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
-		<property name="exceptionAttribute" value="ex"/>
+		<property name="exceptionAttribute" value="ex" />
 		<property name="defaultStatusCode" value="404" />
 		<!-- 配置多个statusCode -->
 		<property name="statusCodes">
@@ -100,39 +102,17 @@
 			<!-- 这里你可以根据需要定义N多个错误异常转发 -->
 			<props>
 				<!-- 数据库错误(dbError.jsp) -->
-				<prop key="java.sql.SQLException">dbError</prop>
+				<!-- <prop key="java.sql.SQLException">dbError</prop> -->
 				<!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
-				<prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop>
+				<!-- <prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> -->
 				<!-- 参数错误(bizError.jsp) -->
-				<prop key="java.lang.IllegalArgumentException">bizError</prop>
+				<!-- <prop key="java.lang.IllegalArgumentException">bizError</prop> -->
 				<!-- 参数类型有误(bizError.jsp) -->
-				<prop key="org.springframework.validation.BindException">bizError</prop>
+				<!-- <prop key="org.springframework.validation.BindException">bizError</prop> -->
 				<!-- 其他错误为'未定义错误'(unknowError.jsp) -->
-				<prop key="java.lang.Exception">unknowError</prop>
+				<!-- <prop key="java.lang.Exception">unknowError</prop> -->
 			</props>
 		</property>
 	</bean>
-	<!-- Spring 拦截器 -->
-	<mvc:interceptors>
-		<!-- 编码 -->
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.cdeledu.interceptors.EncodingInterceptor" />
-		</mvc:interceptor>
-		<!-- 菜单权限 -->
-		<mvc:interceptor>
-			<!--设置拦截的路径,例如：后台目录:如果不配置或/*,将拦截所有的Controller -->
-			<mvc:mapping path="/**" />
-			<!-- 自定义拦截控制器bean -->
-			<bean class="com.cdeledu.interceptors.AuthInterceptor">
-				<!-- 不被拦截范围（路径）；例如：后台登录页面 -->
-				<property name="excludeUrls">
-					<list>
-						<value>loginController.shtml?login</value>
-						<value>loginController.shtml?checkuser</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+
 </beans>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
@@ -11,11 +10,11 @@
 	<context:property-placeholder
 		location="classpath:properties/dbConfig.properties" />
 	<!-- 打开Spring的Annotation支持 -->
-	<context:annotation-config />
-	
+
+
 	<!-- 自动扫描dao和service包(自动注入) -->
-	<context:component-scan base-package="com.cdeledu.dao.*" />
-	<context:component-scan base-package="com.cdeledu.service.*" />
+	<context:component-scan base-package="com.cdeledu.dao.impl.*" />
+	<context:component-scan base-package="com.cdeledu.service.impl.*" />
 
 	<!-- 加载service,此时要排除要controller,因为controller已经spring-mvc中加载过了 -->
 	<context:component-scan base-package="com.cdeledu.*">
@@ -27,8 +26,10 @@
 		数据库映射 指定连接数据库的基本属性信息 -->
 
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+			> -->
 		<!-- 指定连接数据库的驱动 -->
-		<property name="driver" value="${database.jdbcName}" />
+		<property name="driverClassName" value="${database.jdbcName}" />
 		<!-- 指定连接数据库的URL 数据库名称,注意编码 -->
 		<property name="url" value="${database.dbUrl}" />
 		<!-- 指定连接数据库的用户名 -->
@@ -56,7 +57,7 @@
 		<!-- 关闭abanded连接时输出错误日志 -->
 		<property name="logAbandoned" value="true" />
 
-		<!-- 开启Druid的监控统计功能 -->
+		<!-- 开启Druid的监控统计功能,去掉后监控界面sql无法统计 -->
 		<property name="filters" value="stat" />
 	</bean>
 </beans>
