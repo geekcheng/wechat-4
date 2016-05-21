@@ -6,12 +6,29 @@
 	<parent>
 		<groupId>com.cdeledu</groupId>
 		<artifactId>wechat</artifactId>
-		<version>1.6.5</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>weixin-server</artifactId>
 	<packaging>war</packaging>
 	<name>weixin-server Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<dependencies>
+		<!-- 以防止JSP页面报错所引入的 -->
+		<!-- javaee-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javax.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- javaee-web-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>${javax.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>weixin-server</finalName>
 	</build>

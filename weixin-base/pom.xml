@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.cdeledu</groupId>
     <artifactId>wechat</artifactId>
-    <version>1.6.5</version>
+    <version>1.0.1</version>
   </parent>
   <artifactId>weixin-base</artifactId>
   <name>weixin-base</name>

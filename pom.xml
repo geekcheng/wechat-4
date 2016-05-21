@@ -9,7 +9,7 @@
 	<!--构件的标识符，它和group ID一起唯一标识一个构件.在某个特定的group ID下,artifact ID也必须是唯一的。构件是项目产生的或使用的一个东西，Maven为项目产生的构件包括：JARs，源码，二进制发布和WARs等。 -->
 	<artifactId>wechat</artifactId>
 	<!--项目当前版本,格式为:主版本.次版本.增量版本-限定版本号 -->
-	<version>1.6.5</version>
+	<version>1.0.1</version>
 	<!--项目产生的构件类型,例如jar、war、ear、pom.插件可以创建他们自己的构件类型,所以前面列的不是全部构件类型 -->
 	<packaging>pom</packaging>
 
@@ -58,6 +58,38 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 指定Maven用什么编码来呈现站点的HTML文件 -->
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- 指定JDK版本 -->
+		<java.version>1.7</java.version>
+		<javax.version>7.0</javax.version>
+		<jsp-api.version>2.0</jsp-api.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet-api.version>2.5</servlet-api.version>
+
+		<!-- 指定springSource相关版本 -->
+		<spring.action.version></spring.action.version>
+		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
+		<!-- 指定spring security 版本 -->
+		<org.springframework.security.version></org.springframework.security.version>
+		<!-- 指定HibernateSource相关版本 -->
+		<hibernate.version></hibernate.version>
+
+		<!-- 指定数据数据库版本 -->
+		<mysql.version>5.1.35</mysql.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+		<druid.version>1.0.13</druid.version>
+
+		<!-- 指定 Apache POI 版本 -->
+		<org.apache.poi.version>3.9</org.apache.poi.version>
+
+		<!-- 指定org.apache.shiro 版本(用于身份验证和授权) -->
+		<org.apache.shiro.version>1.2.3</org.apache.shiro.version>
+
+		<!-- 指定 FreeMarker 相关版本 -->
+		<org.freemarker.version>2.3.23</org.freemarker.version>
+
+		<!-- 指定 jetty 版本 -->
+		<jetty.version>6.1.5</jetty.version>
 	</properties>
 	<!-- 模块（有时称作子项目） 被构建成项目的一部分。列出的每个模块元素是指向该模块的目录的相对路径 -->
 	<modules>
@@ -80,7 +112,9 @@
 		</dependency>
 		<!-- 单元测试(end ) -->
 
-					<!-- 日志输出依赖包 (开始) -->
+
+
+		<!-- 日志输出依赖包 (开始) -->
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
@@ -95,20 +129,35 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.6.1</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
-			<scope>runtime</scope>
 		</dependency>
 		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
-			<scope>runtime</scope>
+			<exclusions>
+            <exclusion>
+                <artifactId>mail</artifactId>
+                <groupId>javax.mail</groupId>
+            </exclusion>
+            <exclusion>
+                <artifactId>jms</artifactId>
+                <groupId>javax.jms</groupId>
+            </exclusion>
+            <exclusion>
+                <artifactId>jmxtools</artifactId>
+                <groupId>com.sun.jdmk</groupId>
+            </exclusion>
+            <exclusion>
+                <artifactId>jmxri</artifactId>
+                <groupId>com.sun.jmx</groupId>
+            </exclusion>
+        </exclusions>
 		</dependency>
 		<!-- 日志输出依赖包 (结束) -->
 
@@ -146,8 +195,18 @@
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
-			<version>2.2.3</version>
+			<version>2.4</version>
 			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.3</version>
 		</dependency>
 		<!-- JSON 工具包 (结束) -->
 
@@ -155,7 +214,7 @@
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
-			<version>2.3.23</version>
+			<version>${org.freemarker.version}</version>
 		</dependency>
 		<!-- FreeMarker(结束) -->
 
@@ -163,37 +222,29 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.9</version>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-examples</artifactId>
-			<version>3.9</version>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-excelant</artifactId>
-			<version>3.9</version>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.9</version>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 		<!-- Apache POI (结束) -->
-
-		<!-- PDF (开始) -->
-		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>2.1.7</version>
-		</dependency>
-		<!-- PDF (结束) -->
 
 		<!-- Apache Commons (开始) -->
 		<!-- commons-beanutils -->
@@ -219,6 +270,23 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
+		</dependency>
+		<!-- 数据库相关依赖包 -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+			<scope>runtime</scope>
+			<exclusions>
+            <!-- <exclusion>
+                <artifactId>xercesImpl</artifactId>
+                <groupId>xerces</groupId>
+            </exclusion>
+            <exclusion>
+                <artifactId>commons-collections</artifactId>
+                <groupId>commons-collections</groupId>
+            </exclusion> -->
+        </exclusions>
 		</dependency>
 		<!-- commons-dbutils -->
 		<dependency>
@@ -262,12 +330,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-		<!-- commons-logging -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging-api</artifactId>
@@ -279,6 +341,13 @@
 			<artifactId>commons-net</artifactId>
 			<version>3.3</version>
 		</dependency>
+		<!-- 数据库相关依赖包 -->
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.6</version>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- commons-validator -->
 		<dependency>
 			<groupId>commons-validator</groupId>
@@ -288,11 +357,11 @@
 		<!-- Apache Commons (结束) -->
 
 		<!--语词分析 anltr (开始) -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr</artifactId>
 			<version>3.5.2</version>
-		</dependency>
+		</dependency> -->
 		<!--语词分析 anltr(结束) -->
 
 		<!-- 网络爬虫:页面分析工具 (开始) -->
@@ -342,6 +411,8 @@
 			<artifactId>serializer</artifactId>
 			<version>2.7.1</version>
 		</dependency>
+		<!-- httpclient -->
+
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-util</artifactId>
@@ -357,13 +428,7 @@
 			<artifactId>nekohtml</artifactId>
 			<version>1.9.21</version>
 		</dependency>
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- httpclient -->
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
@@ -392,11 +457,11 @@
 			<artifactId>pinyin4j</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>ant</groupId>
 			<artifactId>ant</artifactId>
 			<version>1.6.5</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -412,12 +477,6 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
-		</dependency>
-		<!-- 以防止JSP页面报错所引入的 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
 		</dependency>
 		<!-- 辅助依赖包 (结束) -->
 	</dependencies>
@@ -460,17 +519,26 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.1</version>
+					<version>2.3.2</version>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
 					</configuration>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<encoding>${file.encoding}</encoding>
+						<outputDirectory />
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
+					<version>2.6</version>
 					<configuration>
 						<archive>
 							<manifest>
