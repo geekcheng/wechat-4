@@ -38,4 +38,7 @@ public interface UserService extends CommonService {
 
 	/** 除删除用户 */
 	public Integer delUserIds(Integer[] delIds);
+
+	/** 保存管理员登录信息 */
+	public void saveLoginInfo(ManagerUser managerUser);
 }

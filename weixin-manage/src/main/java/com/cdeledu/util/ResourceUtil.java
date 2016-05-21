@@ -18,8 +18,8 @@ import com.cdeledu.model.rbac.ManagerUser;
  */
 public class ResourceUtil {
 	/** ----------------------------------------------------- Fields start */
-	private static final ResourceBundle sysConfig = ResourceBundle.getBundle("sysConfig");
-	private static final ResourceBundle dbConfig = ResourceBundle.getBundle("dbConfig");
+	private static final ResourceBundle sysConfig = ResourceBundle.getBundle("properties/sysConfig");
+	private static final ResourceBundle dbConfig = ResourceBundle.getBundle("properties/dbConfig");
 
 	/** ----------------------------------------------------- Fields end */
 	/**

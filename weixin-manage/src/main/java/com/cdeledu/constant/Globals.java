@@ -12,6 +12,12 @@ public final class Globals {
 	 * 保存用户到SESSION
 	 */
 	public static String USER_SESSION = "USER_SESSION";
+
+	/**
+	 * 将登录前的URL放到Session中的键名称
+	 */
+	public static final String LOGIN_TO_URL = "toUrl";
+
 	/**
 	 * 人员类型
 	 */

@@ -12,10 +12,6 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.Email;
 /**
  * 
  * @类描述: 系统用户基本信息表
- *       <ul>
- *       <li>RBAC（Role-Based Access Control:基于角色的访问控制）</li>
- *       <li>用户信息实体类</li>
- *       <ul>
  * @创建者: 独泪了无痕--duleilewuhen@sina.com
  * @创建日期: 2015-8-23 下午08:34:19
  * @版本: V1.2

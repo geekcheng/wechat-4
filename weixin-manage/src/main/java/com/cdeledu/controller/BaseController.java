@@ -1,9 +1,12 @@
 package com.cdeledu.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cdeledu.interceptors.DateConvertEditor;
@@ -26,7 +29,10 @@ public class BaseController {
 	 * @创建人:独泪了无痕
 	 * @param binder
 	 */
+	@InitBinder
 	public void initBinder(ServletRequestDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new DateConvertEditor());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// binder.registerCustomEditor(Date.class, new DateConvertEditor());
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 }

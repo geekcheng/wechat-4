@@ -80,16 +80,18 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(params = "login")
-	public String login(HttpServletRequest request, HttpServletResponse response) {
-		ManagerUser managerUser = ResourceUtil.getSessionUserName();
+	@RequestMapping(params = "/doLogin")
+	public String doLogin(HttpServletRequest request, HttpServletResponse response) {
+		/*ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		if (null != managerUser) {
 			request.setAttribute("roleName", userService.getUserRole(managerUser));
 			request.setAttribute(Globals.USER_SESSION, managerUser);
 			return "main/main";
 		} else {
 			return "login/login";
-		}
+		}*/
+		System.out.println("properties");
+		return "login/login";
 	}
 
 	/**
@@ -99,8 +101,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(params = "logout")
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(params = "/doLogout")
+	public ModelAndView doLogout(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = null;
 		HttpSession session = ContextHolderUtils.getSession();
 		ManagerUser managerUser = ResourceUtil.getSessionUserName();
