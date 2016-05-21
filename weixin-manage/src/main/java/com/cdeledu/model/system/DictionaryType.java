@@ -21,20 +21,26 @@ import javax.persistence.Table;
 public class DictionaryType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	// 字典类型名称
-	private String dictName;
-	// 字典编码(字典值 :固定的,不变的)
-	private Integer dictCode;
-	// 字典是否删除
-	private Integer delStatus;
+	// 资源名称:同种类型下唯一性
+	private String itemName;
+	// 资源名称:同种类型下唯一性
+	private String itemCode;
+	// 是否有效:1:有效,默认值;-1:无效
+	private Integer enabled;
 	// 用于指定显示顺序
-	private Integer sort;
-	// 字典使用的备注说明
-	private String remark;
+	private Integer sortCode;
+	// 允许编辑:默认1.允许;0:不允许
+	private Integer allowEdit;
+	// 是否允许删除:默认是1
+	private Integer allowDelete;
+	// 父节点ID
+	private Integer parentId;
 	// 创建时间
 	private Date createTime;
 	// 最后修改时间
 	private Date lastEditTime;
+	// 字典使用的备注说明
+	private String remark;
 
 	public Integer getId() {
 		return id;
@@ -44,44 +50,60 @@ public class DictionaryType implements Serializable {
 		this.id = id;
 	}
 
-	public String getDictName() {
-		return dictName;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setDictName(String dictName) {
-		this.dictName = dictName;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public Integer getDictCode() {
-		return dictCode;
+	public String getItemCode() {
+		return itemCode;
 	}
 
-	public void setDictCode(Integer dictCode) {
-		this.dictCode = dictCode;
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
 	}
 
-	public Integer getDelStatus() {
-		return delStatus;
+	public Integer getEnabled() {
+		return enabled;
 	}
 
-	public void setDelStatus(Integer delStatus) {
-		this.delStatus = delStatus;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
 
-	public Integer getSort() {
-		return sort;
+	public Integer getSortCode() {
+		return sortCode;
 	}
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
+	public void setSortCode(Integer sortCode) {
+		this.sortCode = sortCode;
 	}
 
-	public String getRemark() {
-		return remark;
+	public Integer getAllowEdit() {
+		return allowEdit;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
+	public void setAllowEdit(Integer allowEdit) {
+		this.allowEdit = allowEdit;
+	}
+
+	public Integer getAllowDelete() {
+		return allowDelete;
+	}
+
+	public void setAllowDelete(Integer allowDelete) {
+		this.allowDelete = allowDelete;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
 	public Date getCreateTime() {
@@ -98,5 +120,13 @@ public class DictionaryType implements Serializable {
 
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

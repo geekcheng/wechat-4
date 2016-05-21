@@ -35,75 +35,107 @@ public class DictionaryData implements Serializable {
 	private Integer parentId;
 	// 用于逻辑删除数据
 	private Integer iscancle;
-	//用于指定显示顺序
-	private Integer sort;
+	// 用于指定显示顺序
+	private Integer sortCode;
+	// 是否有效；1:有效,默认值；-1:无效
+	private Integer enabled;
 	// 创建时间
 	private Date createTime;
 	// 最后修改时间
 	private Date lastEditTime;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Integer getDictValue() {
 		return dictValue;
 	}
+
 	public void setDictValue(Integer dictValue) {
 		this.dictValue = dictValue;
 	}
+
 	public String getDictDateName() {
 		return dictDateName;
 	}
+
 	public void setDictDateName(String dictDateName) {
 		this.dictDateName = dictDateName;
 	}
+
 	public String getDictDateCode() {
 		return dictDateCode;
 	}
+
 	public void setDictDateCode(String dictDateCode) {
 		this.dictDateCode = dictDateCode;
 	}
+
 	public String getDictDateDesc() {
 		return dictDateDesc;
 	}
+
 	public void setDictDateDesc(String dictDateDesc) {
 		this.dictDateDesc = dictDateDesc;
 	}
+
 	public Integer getIsfixed() {
 		return isfixed;
 	}
+
 	public void setIsfixed(Integer isfixed) {
 		this.isfixed = isfixed;
 	}
+
 	public Integer getParentId() {
 		return parentId;
 	}
+
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
+
 	public Integer getIscancle() {
 		return iscancle;
 	}
+
 	public void setIscancle(Integer iscancle) {
 		this.iscancle = iscancle;
 	}
-	public Integer getSort() {
-		return sort;
+
+	public Integer getSortCode() {
+		return sortCode;
 	}
-	public void setSort(Integer sort) {
-		this.sort = sort;
+
+	public void setSortCode(Integer sortCode) {
+		this.sortCode = sortCode;
 	}
+
+	public Integer getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
 	public Date getLastEditTime() {
 		return lastEditTime;
 	}
+
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
 	}
