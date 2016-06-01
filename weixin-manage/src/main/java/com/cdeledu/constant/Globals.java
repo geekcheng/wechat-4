@@ -9,6 +9,10 @@ package com.cdeledu.constant;
  */
 public final class Globals {
 	/**
+	 * 登录页面地址
+	 */
+	public static String LOGIN_PAGE = "login/login";
+	/**
 	 * 保存用户到SESSION
 	 */
 	public static String USER_SESSION = "USER_SESSION";
