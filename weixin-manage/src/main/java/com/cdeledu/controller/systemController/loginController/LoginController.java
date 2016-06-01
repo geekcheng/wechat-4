@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.cdeledu.constant.Globals;
+import com.cdeledu.controller.BaseController;
 import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.model.rbac.ManagerUser;
@@ -29,18 +30,19 @@ import com.cdeledu.util.ResourceUtil;
  */
 @Controller
 @RequestMapping("/loginController")
-public class LoginController {
+public class LoginController extends BaseController {
 	/** ----------------------------------------------------- Fields start */
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private SystemService systemService;
+
 	private String msg = null;
 
 	/** ----------------------------------------------------- Fields end */
 	/**
 	 * @方法:登陆验证
-	 * 			<ul>
+	 *          <ul>
 	 *          <li>① 缺少登录验证码</li>
 	 *          <li>② 缺少密码加密</li>
 	 *          </ul>
@@ -52,7 +54,8 @@ public class LoginController {
 	 */
 	@RequestMapping(params = "checkuser")
 	@ResponseBody
-	public AjaxJson checkuser(HttpServletRequest request, HttpServletResponse response, ManagerUser user) {
+	public AjaxJson checkuser(HttpServletRequest request, HttpServletResponse response,
+			ManagerUser user) {
 		AjaxJson reslutMsg = new AjaxJson();
 		HttpSession session = ContextHolderUtils.getSession();
 		// 密码加密(暂时搁置)
@@ -80,18 +83,16 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(params = "/doLogin")
+	@RequestMapping(params = "doLogin")
 	public String doLogin(HttpServletRequest request, HttpServletResponse response) {
-		/*ManagerUser managerUser = ResourceUtil.getSessionUserName();
+		ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		if (null != managerUser) {
 			request.setAttribute("roleName", userService.getUserRole(managerUser));
 			request.setAttribute(Globals.USER_SESSION, managerUser);
 			return "main/main";
 		} else {
-			return "login/login";
-		}*/
-		System.out.println("properties");
-		return "login/login";
+			 return Globals.LOGIN_PAGE;
+		}
 	}
 
 	/**
@@ -101,9 +102,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(params = "/doLogout")
+	@RequestMapping(params = "doLogout")
 	public ModelAndView doLogout(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView modelAndView = null;
 		HttpSession session = ContextHolderUtils.getSession();
 		ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		// 判断用户是否为空,不为空,则清空session中的用户object
@@ -112,9 +112,8 @@ public class LoginController {
 			session.removeAttribute(Globals.USER_SESSION);
 			msg = "用户" + managerUser.getUserName() + "已退出";
 			systemService.addLog(msg, Globals.Log_Type_EXIT, Globals.Log_Leavel_INFO);
-			modelAndView = new ModelAndView(new RedirectView("loginController.do?login"));
 		}
-		return modelAndView;
+		return new ModelAndView(new RedirectView("loginController.shtml?doLogin"));
 	}
 
 	/**
