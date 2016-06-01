@@ -47,7 +47,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	private boolean hasMenuAuth(HttpServletRequest request) {
 		// 用户访问的资源地址
 		String requestPath = ResourceUtil.getRequestPath(request);
-		if(requestPath.indexOf("loginController.do") != -1){
+		if(requestPath.indexOf("loginController.shtml") != -1){
 			return true;
 		}
 		SessionInfo sessioninfo = (SessionInfo) ContextHolderUtils.getSession().getAttribute(Globals.USER_SESSION);
