@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 配置注解扫描 -->
+	<context:annotation-config />
+	<!-- 激活自动代理功能 -->
+	<aop:aspectj-autoproxy />
+	<!-- 拦截器 -->
+	<context:component-scan base-package="com.cdeledu.interceptors" />
+	<!-- 数据库配置 -->
+	<import resource="dataSource-config.xml" />
+	<!-- 缓存配置 -->
+	<!-- <import resource="cache-config.xml" /> -->
+
+
+
+	<!-- 支持上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="UTF-8">
+		<!-- 设置允许上传的最大文件大小,以字节为单位计算,当设为-1时表示无限制.默认是-1.注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<property name="maxUploadSize" value="104857600" />
+		<!-- 设置在文件上传时允许写到内存中的最大值,以字节为单位计算.默认是10240 -->
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+
+	<!-- 国际化资源 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>/properties/myResources/message</value>
+				<value>/properties/myResources/content</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- servlet适配器，这里必须明确声明，因为spring默认没有初始化该适配器 -->
+	<bean id="servletHandlerAdapter"
+		class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
+
+
+	<!-- Spring任务调度器之:定时任务配置 -->
+	<!-- <context:component-scan base-package="com.cdeledu.timertask" /> -->
+	<!-- 配置任务线性池 -->
+	<!-- <task:executor id="executor" pool-size="5" /> -->
+	<!-- <task:scheduler id="scheduler" pool-size="10" /> -->
+	<!-- 启用annotation方式 -->
+	<!-- <task:annotation-driven executor="executor" scheduler="scheduler" /> -->
+
+	<!-- 异常处理类 -->
+	<bean id="handlerExceptionResolver" class="com.cdeledu.exception.SpringExceptionHandler" />
+	<!-- 系统错误转发配置[并记录错误日志] -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+		<property name="warnLogCategory" value="info" />
+		<!-- 定义默认的异常处理页面，当该异常类型的注册时使用. 默认为500，系统错误(error.jsp) -->
+		<!-- 表示当抛出异常但没有在exceptionMappings里面找到对应的异常时 返回名叫common/error的视图 -->
+		<property name="defaultErrorView" value="500" />
+		<!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+		<property name="exceptionAttribute" value="ex" />
+		<!-- 表示在发生异常时默认的HttpServletResponse的返回码是多少，默认是200 -->
+		<property name="defaultStatusCode" value="404" />
+		<!-- 配置多个statusCode -->
+		<property name="statusCodes"><!-- 配置多个statusCode -->
+			<props>
+				<prop key="error">500</prop>  <!-- error.jsp -->
+				<prop key="error">404</prop>    <!-- error.jsp -->
+			</props>
+		</property>
+		<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+		<property name="exceptionMappings">
+			<!-- 这里你可以根据需要定义N多个错误异常转发 -->
+			<props>
+				<!-- 数据库错误(dbError.jsp) -->
+				<prop key="java.sql.SQLException">dbError</prop>
+				<!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
+				<prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop>
+				<!-- 参数错误(bizError.jsp) -->
+				<prop key="java.lang.IllegalArgumentException">bizError</prop>
+				<!-- 参数类型有误(bizError.jsp) -->
+				<prop key="org.springframework.validation.BindException">bizError</prop>
+				<!-- 其他错误为'未定义错误'(unknowError.jsp) -->
+				<prop key="java.lang.Exception">unknowError</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<!-- ====================================================================== 
+		配置自定义Spring 拦截器 -->
+	<!-- 菜单权限:设置拦截的路径,例如：后台目录:如果不配置或/*,将拦截所有的Controller -->
+	<bean id="authInterceptor" class="com.cdeledu.interceptors.AuthInterceptor">
+		<!-- 不被拦截范围（路径）；例如：后台登录页面 -->
+		<property name="excludeUrls">
+			<list>
+				<value>loginController.shtml?doLogin</value>
+				<value>loginController.shtml?checkuser</value>
+			</list>
+		</property>
+	</bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.cdeledu.interceptors.EncodingInterceptor" />
+		</mvc:interceptor>
+		<!-- <mvc:interceptor> -->
+		<!-- <mvc:mapping path="/**" /> -->
+		<!-- <ref bean="authInterceptor" /> -->
+		<!-- </mvc:interceptor> -->
+	</mvc:interceptors>
+
+</beans>

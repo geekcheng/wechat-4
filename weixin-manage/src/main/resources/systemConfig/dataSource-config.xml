@@ -5,29 +5,36 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<!-- ====================================================================== 
-		加载资源文件 其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载 -->
-	<context:property-placeholder
-		location="classpath:properties/dbConfig.properties" />
-	<!-- 打开Spring的Annotation支持 -->
-
-
 	<!-- 自动扫描dao和service包(自动注入) -->
-	<context:component-scan base-package="com.cdeledu.dao.impl.*" />
-	<context:component-scan base-package="com.cdeledu.service.impl.*" />
+	<context:component-scan base-package="com.cdeledu.dao" />
+	<context:component-scan base-package="com.cdeledu.service" />
 
-	<!-- 加载service,此时要排除要controller,因为controller已经spring-mvc中加载过了 -->
-	<context:component-scan base-package="com.cdeledu.*">
+	<!-- 加载service,此时要排除要controller,因为controller已经spring-servlet-context中加载过了 -->
+	<context:component-scan base-package="com.cdeledu">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+	<!-- 定义个缺省的控制适配器 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+	<!-- ====================================================================== 
+		加载资源文件 其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载 -->
+	<!-- 适用于多个资源文件加载 -->
+	<bean id="config"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/dbConfig.properties</value>
+			</list>
+		</property>
+	</bean>
 	<!-- ====================================================================== 
 		数据库映射 指定连接数据库的基本属性信息 -->
 
-	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-		<!-- <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
-			> -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
 		<!-- 指定连接数据库的驱动 -->
 		<property name="driverClassName" value="${database.jdbcName}" />
 		<!-- 指定连接数据库的URL 数据库名称,注意编码 -->
@@ -60,4 +67,26 @@
 		<!-- 开启Druid的监控统计功能,去掉后监控界面sql无法统计 -->
 		<property name="filters" value="stat" />
 	</bean>
+
+	<!-- ====================================================================== 
+		JDBC 事务管理:在*ServiceImpl里写@Transactional就可以启用事物管理 -->
+	<!-- 声明式事务管理器 -->
+	<bean id="transactionManager" name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 用注解来实现事务管理(配置事务规则) -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<!-- ====================================================================== 
+		配置JDBC模板 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- ====================================================================== 
+		配置mybatis模板 -->
+
 </beans>
