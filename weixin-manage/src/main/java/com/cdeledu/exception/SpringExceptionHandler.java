@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,10 +26,15 @@ public class SpringExceptionHandler implements HandlerExceptionResolver {
 
 	/** ----------------------------------------------------- Fields end */
 	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object object,
-			Exception exception) {
+	 @ExceptionHandler(Exception.class)  
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
+			Object object, Exception exception) {
 		String exceptionMessage = ExceptionHelperUtil.getExceptionMessage(exception);
 		logger.error(exceptionMessage);
+		System.out.println("exception name: " + exception.getClass().toString());// 异常名
+		System.out.println("exception cause: " + exception.getCause());
+		System.out.println("exception msg: " + exception.getLocalizedMessage());
+
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("exceptionMessage", exceptionMessage);
 		model.put("ex", exception);
