@@ -4,7 +4,14 @@ import java.util.Set;
 
 import com.cdeledu.model.personManage.UserInfoBean;
 
-public interface SystemService extends CommonService {
+/**
+ * @类描述: 系统业务处理接口
+ * @创建者: 皇族灬战狼
+ * @创建时间: 2016年6月1日 下午4:58:15
+ * @版本: V1.0
+ * @since: JDK 1.7
+ */
+public interface SystemService {
 	/**
 	 * @方法: 登陆用户检查
 	 * @创建人:独泪了无痕

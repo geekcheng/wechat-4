@@ -14,7 +14,7 @@ import com.cdeledu.model.rbac.ManagerUser;
  * @version: V1.0
  * @history:
  */
-public interface UserService extends CommonService {
+public interface UserService {
 	/** 检查用户是否存在 */
 	public ManagerUser checkUserExits(ManagerUser managerUser);
 
