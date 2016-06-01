@@ -15,11 +15,11 @@
 	<description>微信功能后台管理</description>
 	<dependencies>
 		<!-- 配置子项目的相关调用 -->
-		<!-- <dependency> -->
-		<!-- <groupId>${project.groupId}</groupId> -->
-		<!-- <artifactId>weixin-mp</artifactId> -->
-		<!-- <version>${project.version}</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>weixin-mp</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- 配置子项目的相关调用 -->
 		<!-- <dependency> -->
 		<!-- <groupId>${project.groupId}</groupId> -->
@@ -71,6 +71,11 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- web 依赖包(结束) -->
@@ -90,11 +95,24 @@
 			<version>${c3p0.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- 数据源 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		<!-- mybatis-->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
 		</dependency>
 		<!-- 数据库相关依赖包 (结束) -->
 
