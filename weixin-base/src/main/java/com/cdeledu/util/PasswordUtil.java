@@ -30,7 +30,7 @@ public class PasswordUtil {
 	 * PBEWithSHA1AndRC2_40
 	 * </pre>
 	 */
-	public static final String ALGORITHM = "PBEWITHMD5andDES";
+	private static final String ALGORITHM = "PBEWITHMD5andDES";
 	private static final String private_Key = "4cd2934d";// 密钥
 	private static final int ITERATIONCOUNT = 1000; // 定义迭代次数为1000次
 
@@ -70,7 +70,7 @@ public class PasswordUtil {
 	 * @param src
 	 * @return
 	 */
-	public static String bytesToHexString(byte[] src) {
+	private static String bytesToHexString(byte[] src) {
 		StringBuilder stringBuilder = new StringBuilder("");
 		if (src == null || src.length <= 0) {
 			return null;
@@ -94,7 +94,7 @@ public class PasswordUtil {
 	 *            十六进制字符串
 	 * @return
 	 */
-	public static byte[] hexStringToBytes(String hexString) {
+	private static byte[] hexStringToBytes(String hexString) {
 		if (hexString == null || hexString.equals("")) {
 			return null;
 		}
@@ -109,7 +109,7 @@ public class PasswordUtil {
 		return d;
 	}
 
-	public static byte[] getStaticSalt() {
+	private static byte[] getStaticSalt() {
 		// 产出盐
 		return private_Key.getBytes();
 	}
@@ -126,10 +126,10 @@ public class PasswordUtil {
 	 *            盐值
 	 * @return 加密后的密文字符串
 	 */
-	public static String encrypt(String plaintext, String password, byte[] salt) {
+	public static String encrypt(String plaintext, String password) {
 		Key key = getPBEKey(password);
 		byte[] encipheredData = null;
-		PBEParameterSpec parameterSpec = new PBEParameterSpec(salt, ITERATIONCOUNT);
+		PBEParameterSpec parameterSpec = new PBEParameterSpec(getStaticSalt(), ITERATIONCOUNT);
 		try {
 			Cipher cipher = Cipher.getInstance(ALGORITHM);
 
@@ -155,7 +155,7 @@ public class PasswordUtil {
 	 *            盐值(如需解密,该参数需要与加密时使用的一致)
 	 * @return 解密后的明文字符串
 	 */
-	public static String decrypt(String ciphertext, String password, byte[] salt) {
+	public static String decrypt(String ciphertext, String password) {
 		Key key = getPBEKey(password);
 		byte[] passDec = null;
 		PBEParameterSpec parameterSpec = new PBEParameterSpec(getStaticSalt(), ITERATIONCOUNT);
