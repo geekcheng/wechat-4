@@ -14,9 +14,6 @@ import javax.persistence.Table;
  * @版本: V1.0
  * @since: JDK 1.7
  */
-@Entity
-@Table(name = "sys_operate_log")
-@PrimaryKeyJoinColumn(name = "id")
 public class OperateLog implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// 编号(主键)

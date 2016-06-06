@@ -3,10 +3,6 @@ package com.cdeledu.model.rbac;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
 
 /**
@@ -17,9 +13,6 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank
  * @版本: V1.2
  * @since: JDK 1.7
  */
-@Entity
-@Table(name = "t_system_managerUser")
-@PrimaryKeyJoinColumn(name = "id")
 public class ManagerUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;

@@ -15,9 +15,6 @@ import javax.persistence.Table;
  * @since: JDK 1.7
  * @see <a href="">TODO(连接内容简介)</a>
  */
-@Entity
-@Table(name = "sys_dictionary_type")
-@PrimaryKeyJoinColumn(name = "id")
 public class DictionaryType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;

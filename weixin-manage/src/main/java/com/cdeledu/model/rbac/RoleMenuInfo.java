@@ -2,24 +2,13 @@ package com.cdeledu.model.rbac;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 /**
- * 
- * @ClassName: RolePower
- * @Description:
- * 				<ul>
- *               <li>RBAC（Role-Based Access Control，基于角色的访问控制）</li>
- *               <li>角色与权限中间表实体类F</li> </ul
- * @author: 独泪了无痕
- * @date: 2015-8-22 上午01:28:19
- * @version: V1.0
+ * @类描述: 角色与权限中间表实体类
+ * @创建者: 独泪了无痕
+ * @创建时间: 2015-8-22 上午01:28:19
+ * @版本: V1.0
+ * @since: JDK 1.7
  */
-@Entity
-@Table(name = "t_system_role_menu")
-@PrimaryKeyJoinColumn(name = "id")
 public class RoleMenuInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;

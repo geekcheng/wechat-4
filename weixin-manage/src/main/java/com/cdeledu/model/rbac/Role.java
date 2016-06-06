@@ -3,24 +3,13 @@ package com.cdeledu.model.rbac;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 /**
- * 
- * @ClassName: UserRoleId
- * @Description:
- * 				<ul>
- *               <li>RBAC（Role-Based Access Control:基于角色的访问控制）</li>
- *               <li>角色表实体类</li> </ul
- * @author: 独泪了无痕
- * @date: 2015-8-22 上午01:21:17
- * @version: V1.0
+ * @类描述: 角色表实体类
+ * @创建者: 独泪了无痕
+ * @创建时间: 2015-8-22 上午01:21:17
+ * @版本: V1.0
+ * @since: JDK 1.7
  */
-@Entity
-@Table(name = "t_system_role")
-@PrimaryKeyJoinColumn(name = "id")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
