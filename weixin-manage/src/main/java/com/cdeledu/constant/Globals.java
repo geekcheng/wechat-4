@@ -9,51 +9,44 @@ package com.cdeledu.constant;
  */
 public final class Globals {
 	/**
-	 * 登录页面地址
+	 * 过滤标识，防止一次请求多次过滤
 	 */
-	public static String LOGIN_PAGE = "login/login";
+	public static final String FILTERED_REQUEST = "@@session_context_filtered_request";
 	/**
 	 * 保存用户到SESSION
 	 */
-	public static String USER_SESSION = "USER_SESSION";
+	public static final String USER_SESSION = "USER_SESSION";
 
 	/**
 	 * 将登录前的URL放到Session中的键名称
 	 */
 	public static final String LOGIN_TO_URL = "toUrl";
+	/**
+	 * 需要登录即可访问的URI资源
+	 */
+	public static final String[] INHERENT_URIS = { "/select", "/find", "get", "/add", "/save",
+			"/insert", "/edit", "/update", "/delete" };
 
 	/**
 	 * 人员类型
 	 */
-	public static Short User_Normal = 1;// 正常
-	public static Short User_Forbidden = 0;// 禁用
-	public static Short User_ADMIN = -1;// 超级管理员
+	public static final Short User_Normal = 1;// 正常
+	public static final Short User_Forbidden = 0;// 禁用
+	public static final Short User_ADMIN = -1;// 超级管理员
 	/**
 	 * 日志级别定义
 	 */
-	public static Short Log_Leavel_INFO = 1;
-	public static Short Log_Leavel_WARRING = 2;
-	public static Short Log_Leavel_ERROR = 3;
+	public static final Short Log_Leavel_INFO = 1;
+	public static final Short Log_Leavel_WARRING = 2;
+	public static final Short Log_Leavel_ERROR = 3;
 	/**
 	 * 日志类型
 	 */
-	public static Short Log_Type_LOGIN = 1; // 登陆
-	public static Short Log_Type_EXIT = 2; // 退出
-	public static Short Log_Type_INSERT = 3; // 插入
-	public static Short Log_Type_DEL = 4; // 删除
-	public static Short Log_Type_UPDATE = 5; // 更新
-	public static Short Log_Type_UPLOAD = 6; // 上传
-	public static Short Log_Type_OTHER = 7; // 其他
-
-	/**
-	 * 权限等级
-	 */
-	public static Short Function_Leave_ONE = 0;// 一级权限
-	public static Short Function_Leave_TWO = 1;// 二级权限
-
-	/**
-	 * 权限等级前缀
-	 */
-	public static String Function_Order_ONE = "ofun";// 一级权限
-	public static String Function_Order_TWO = "tfun";// 二级权限
+	public static final Short Log_Type_LOGIN = 1; // 登陆
+	public static final Short Log_Type_EXIT = 2; // 退出
+	public static final Short Log_Type_INSERT = 3; // 插入
+	public static final Short Log_Type_DEL = 4; // 删除
+	public static final Short Log_Type_UPDATE = 5; // 更新
+	public static final Short Log_Type_UPLOAD = 6; // 上传
+	public static final Short Log_Type_OTHER = 7; // 其他
 }
