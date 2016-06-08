@@ -1,5 +1,6 @@
 package com.cdeledu.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.cdeledu.model.personManage.UserInfoBean;
@@ -40,7 +41,7 @@ public interface SystemService {
 	 * @param functionId
 	 * @return
 	 */
-	public Set<String> getOperationCodesByUserIdAndFunctionId(String userId, String functionId);
+	public Set<String> getOperationCodesByUserIdAndFunctionId(Integer userId, Integer functionId);
 
 	/**
 	 * @方法: 根据角色ID 和 菜单Id 获取 具有操作权限的按钮Codes
@@ -49,5 +50,15 @@ public interface SystemService {
 	 * @param functionId
 	 * @return
 	 */
-	public Set<String> getOperationCodesByRoleIdAndFunctionId(String roleId, String functionId);
+	public Set<String> getOperationCodesByRoleIdAndFunctionId(Integer roleId, Integer functionId);
+
+	/**
+	 * @方法描述: 根据当前登录用户与请求资源地址判断是否有访问权限
+	 * @创建者: 皇族灬战狼
+	 * @创建时间: 2016年6月8日 上午9:19:34
+	 * @param userId
+	 * @param requestPath
+	 * @return
+	 */
+	public Integer getAuthByuserIdAndAuthPath(Integer userId, String requestPath);
 }

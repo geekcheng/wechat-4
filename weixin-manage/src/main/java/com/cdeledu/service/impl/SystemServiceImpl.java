@@ -1,5 +1,6 @@
 package com.cdeledu.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -23,12 +24,17 @@ public class SystemServiceImpl implements SystemService {
 	}
 
 	@Override
-	public Set<String> getOperationCodesByUserIdAndFunctionId(String userId, String functionId) {
+	public Set<String> getOperationCodesByUserIdAndFunctionId(Integer userId, Integer functionId) {
 		return null;
 	}
 
 	@Override
-	public Set<String> getOperationCodesByRoleIdAndFunctionId(String roleId, String functionId) {
+	public Set<String> getOperationCodesByRoleIdAndFunctionId(Integer roleId, Integer functionId) {
+		return null;
+	}
+
+	@Override
+	public Integer getAuthByuserIdAndAuthPath(Integer userId, String requestPath) {
 		return null;
 	}
 
