@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -91,7 +92,7 @@ public class LoginController extends BaseController {
 			request.setAttribute(Globals.USER_SESSION, managerUser);
 			return "main/main";
 		} else {
-			 return Globals.LOGIN_PAGE;
+			return "login/login";
 		}
 	}
 
@@ -153,7 +154,12 @@ public class LoginController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(params = "noAuth")
-	public ModelAndView noAuth(HttpServletRequest request) {
+	@ResponseBody
+	public ModelAndView noAuth(HttpServletRequest request,
+			@RequestParam(value = "requestPath", required = false) String requestPath) {
+		AjaxJson reslutMsg = new AjaxJson();
+		reslutMsg.setMsg("您没有【" + requestPath + "】权限，请联系管理员给您赋予相应权限！");
+		reslutMsg.setSuccess(false);
 		return new ModelAndView("common/noAuth");
 	}
 }
