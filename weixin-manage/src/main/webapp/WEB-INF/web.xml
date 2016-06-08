@@ -155,12 +155,12 @@
 		<url-pattern>/webpage/system/druid/*</url-pattern>
 	</servlet-mapping>
 	<!-- 验证是否登录 -->
-	<!-- <filter> -->
-	<!-- <filter-name>loginFilter</filter-name> -->
-	<!-- <filter-class>com.cdeledu.filter.AjaxAuthenticationFilter</filter-class> -->
-	<!-- </filter> -->
-	<!-- <filter-mapping> -->
-	<!-- <filter-name>loginFilter</filter-name> -->
-	<!-- <url-pattern>*.shtml</url-pattern> -->
-	<!-- </filter-mapping> -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.cdeledu.filter.AjaxAuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>*.shtml</url-pattern>
+	</filter-mapping>
 </web-app>
