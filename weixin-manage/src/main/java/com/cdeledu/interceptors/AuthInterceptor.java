@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdeledu.constant.Globals;
 import com.cdeledu.model.common.SessionInfo;
+import com.cdeledu.service.SystemService;
 import com.cdeledu.util.ContextHolderUtils;
 import com.cdeledu.util.ResourceUtil;
+import com.google.common.collect.Lists;
 
 /**
  * @类描述: 权限拦截器
@@ -25,6 +28,8 @@ import com.cdeledu.util.ResourceUtil;
 public class AuthInterceptor implements HandlerInterceptor {
 	/** ----------------------------------------------------- Fields start */
 	private static final Logger logger = Logger.getLogger(AuthInterceptor.class);
+	@Autowired
+	private SystemService systemService;
 	private List<String> excludeUrls;
 
 	public List<String> getExcludeUrls() {
@@ -47,12 +52,18 @@ public class AuthInterceptor implements HandlerInterceptor {
 	private boolean hasMenuAuth(HttpServletRequest request) {
 		// 用户访问的资源地址
 		String requestPath = ResourceUtil.getRequestPath(request);
+		//update-start-for:菜单权限控制排除Ajax请求判断
 		if(requestPath.indexOf("loginController.shtml") != -1){
 			return true;
 		}
 		SessionInfo sessioninfo = (SessionInfo) ContextHolderUtils.getSession().getAttribute(Globals.USER_SESSION);
-		Integer userid = sessioninfo.getManagerUser().getId();
-		return false;
+		Integer userId = sessioninfo.getManagerUser().getId();
+		// 查询当前登录用户是否具有当前访问地址
+		Integer resultCount = systemService.getAuthByuserIdAndAuthPath(userId, requestPath);
+		if(resultCount > 0)
+			return true;
+		else 
+			return false;
 	}
 
 	/** ----------------------------------------------- privateMethod end */
@@ -89,19 +100,22 @@ public class AuthInterceptor implements HandlerInterceptor {
 			// 菜单权限控制
 			//----------------------------------------------------------------
 			if (null != sessioninfo && null != sessioninfo.getManagerUser()) {
-				// 如果没有权限
+				// 验证当前用户是否有权限访问此资源
 				if(!hasMenuAuth(request)){
-					response.sendRedirect("loginController.shtml?noAuth");
+					// "您没有【" + requestPath + "】权限，请联系管理员给您赋予相应权限！
+					response.sendRedirect("loginController.shtml?noAuth&requestPath="+requestPath);
 					return false;
 				}
+				return true;
 			//----------------------------------------------------------------
 			// 按钮权限控制
 			//----------------------------------------------------------------
 			} else {
-				
+				// 没有登录系统，或登录超时 forward("您没有登录或登录超时，请重新登录！", request, response);
+				request.getRequestDispatcher("webpage/login/timeout.jsp").forward(request, response);
+				return false;
 			}
 		}
-		return false;
 	}
 	/** ----------------------------------------------- PubilcMethod end */
 }
