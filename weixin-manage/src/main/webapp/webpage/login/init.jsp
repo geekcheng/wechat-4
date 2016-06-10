@@ -26,7 +26,7 @@
 			browserversion = "Opera" + $.browser.version;
 		}
 
-		window.location.href = "loginController.shtml?tologin";
+		window.location.href = "loginController.shtml?doLogin";
 	});
 </script>
 </head>
