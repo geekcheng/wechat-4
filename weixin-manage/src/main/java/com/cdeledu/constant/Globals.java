@@ -9,6 +9,10 @@ package com.cdeledu.constant;
  */
 public final class Globals {
 	/**
+	 * 验证码
+	 */
+	public static final String IMAGECAPTCHA = "imageCaptcha";
+	/**
 	 * 过滤标识，防止一次请求多次过滤
 	 */
 	public static final String FILTERED_REQUEST = "@@session_context_filtered_request";
