@@ -60,7 +60,8 @@ public class PasswordUtil {
 	}
 
 	private static byte charToByte(char c) {
-		return (byte) "0123456789ABCDEF".indexOf(c);
+		// return (byte) "0123456789ABCDEF".indexOf(c);
+		return (byte) "D1B5CC2FE46C4CC983C073BCA897935608D926CD32992B5900".indexOf(c);
 	}
 
 	/**

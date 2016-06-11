@@ -21,8 +21,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ManagerUser checkUserExits(ManagerUser user) {
-		@SuppressWarnings("unused")
+		// 密码加密
 		String password = PasswordUtil.encrypt(user.getUserName(), user.getPassword());
+		ManagerUser managerUser = new ManagerUser();
+		managerUser.setUserName(user.getUserName());
+		managerUser.setPassword(password);
+
 		List<ManagerUser> userList = Lists.newArrayList();
 		if (null != userList && userList.size() > 0) {
 			return userList.get(0);

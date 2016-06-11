@@ -24,87 +24,195 @@ public class ManagerUser implements Serializable {
 	private String password;
 	// 用户类型(超级管理员、系统管理员、管理员)
 	private Integer UserType;
+	// 真实姓名
+	private String realName;
+	// 用户邮箱
+	private String email;
+	// email是否经过验证
+	private Integer emailstatus;
+	// 性别
+	private Integer userSex;
+	// 用户手机号码
+	private String mobile;
+	// 用户电话号码
+	private String telephone;
+	// 个性签名
+	private String signature;
+	// 是否显示：默认是1显示
+	private Integer isVisible;
+	// 有效
+	private Integer enabled;
+	// 备注
+	private String userDesc;
+	@NotBlank(message = "账号创建时间")
+	private Date createTime;
+	@NotBlank(message = "账号修改时间")
+	private Date modifyTime;
 	// 最后登录时间
 	private Date last_login_time;
 	// 最后登录ip
 	private String last_login_ip;
 	// 登录次数(查询操作日志的结果数据)
 	private Integer login_count;
-	// 备注
-	private String userDesc;
-	/**
-	 * 是否审核,不为空.默认是-1:<br>
-	 * -1:未提交审核;0:提交审核;1:审核通过;
-	 */
-	private Integer status;
-	@NotBlank(message = "账号创建时间")
-	private Date createTime;
-	//验证码
-	@NotBlank
+	@NotBlank(message = "验证码")
 	private String imageCaptcha;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Integer getUserType() {
 		return UserType;
 	}
+
 	public void setUserType(Integer userType) {
 		UserType = userType;
 	}
-	public Date getLast_login_time() {
-		return last_login_time;
+
+	public String getRealName() {
+		return realName;
 	}
-	public void setLast_login_time(Date last_login_time) {
-		this.last_login_time = last_login_time;
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
-	public String getLast_login_ip() {
-		return last_login_ip;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setLast_login_ip(String last_login_ip) {
-		this.last_login_ip = last_login_ip;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public Integer getLogin_count() {
-		return login_count;
+
+	public Integer getEmailstatus() {
+		return emailstatus;
 	}
-	public void setLogin_count(Integer login_count) {
-		this.login_count = login_count;
+
+	public void setEmailstatus(Integer emailstatus) {
+		this.emailstatus = emailstatus;
 	}
+
+	public Integer getUserSex() {
+		return userSex;
+	}
+
+	public void setUserSex(Integer userSex) {
+		this.userSex = userSex;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
+	public Integer getIsVisible() {
+		return isVisible;
+	}
+
+	public void setIsVisible(Integer isVisible) {
+		this.isVisible = isVisible;
+	}
+
+	public Integer getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
+
 	public String getUserDesc() {
 		return userDesc;
 	}
+
 	public void setUserDesc(String userDesc) {
 		this.userDesc = userDesc;
 	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public Date getLast_login_time() {
+		return last_login_time;
+	}
+
+	public void setLast_login_time(Date last_login_time) {
+		this.last_login_time = last_login_time;
+	}
+
+	public String getLast_login_ip() {
+		return last_login_ip;
+	}
+
+	public void setLast_login_ip(String last_login_ip) {
+		this.last_login_ip = last_login_ip;
+	}
+
+	public Integer getLogin_count() {
+		return login_count;
+	}
+
+	public void setLogin_count(Integer login_count) {
+		this.login_count = login_count;
+	}
+
 	public String getImageCaptcha() {
 		return imageCaptcha;
 	}
+
 	public void setImageCaptcha(String imageCaptcha) {
 		this.imageCaptcha = imageCaptcha;
 	}

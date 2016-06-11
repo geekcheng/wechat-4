@@ -44,7 +44,7 @@ public class LoginController extends BaseController {
 	/** ----------------------------------------------------- Fields end */
 	/**
 	 * @方法:登陆验证
-	 *          <ul>
+	 * 			<ul>
 	 *          <li>① 缺少登录验证码</li>
 	 *          <li>② 缺少密码加密</li>
 	 *          </ul>
@@ -60,28 +60,37 @@ public class LoginController extends BaseController {
 			ManagerUser user) {
 		AjaxJson reslutMsg = new AjaxJson();
 		HttpSession session = ContextHolderUtils.getSession();
-		String imageCaptcha = (String)session.getAttribute(Globals.IMAGECAPTCHA);
-		
-		if(StringUtils.isEmpty(imageCaptcha)|| imageCaptcha.equals(user.getImageCaptcha())){
-			reslutMsg.setMsg("验证码错误，请重新输入");
-			reslutMsg.setSuccess(false);
-			return reslutMsg;
-		}
-		// 密码加密(暂时搁置)
-		ManagerUser managerUser = userService.checkUserExits(user);
-		if (null != managerUser) {
-			logMsg = "用户: " + user.getUserName() + "登录成功";
-			SessionInfo sessionInfo = new SessionInfo();
-			sessionInfo.setManagerUser(managerUser);
-			session.setMaxInactiveInterval(60 * 30);
-			session.setAttribute(Globals.USER_SESSION, sessionInfo);
+		String imageCaptcha = (String) session.getAttribute(Globals.IMAGECAPTCHA);
+		String msg = "";
+		boolean suc = true;
 
-			// 添加登陆日志
-			systemService.addLog(logMsg, Globals.Log_Type_LOGIN, Globals.Log_Leavel_INFO);
+		if (StringUtils.isEmpty(imageCaptcha) || imageCaptcha.equals(user.getImageCaptcha())) {
+			msg = "验证码错误，请重新输入";
+			suc = false;
 		} else {
-			reslutMsg.setMsg("用户名或密码错误!");
-			reslutMsg.setSuccess(false);
+			// 密码加密(暂时搁置)
+			ManagerUser managerUser = userService.checkUserExits(user);
+			if (null != managerUser && null !=managerUser.getEnabled()) {
+				if(managerUser.getEnabled() == 1)
+					logMsg = "用户: " + user.getUserName() + "登录成功";
+				else 
+					logMsg = "用户: " + user.getUserName() + "登录失败。原因:账号未通过审核";
+				
+				SessionInfo sessionInfo = new SessionInfo();
+				sessionInfo.setManagerUser(managerUser);
+				session.setMaxInactiveInterval(60 * 30);
+				session.setAttribute(Globals.USER_SESSION, sessionInfo);
+
+				// 添加登陆日志
+				systemService.addLog(logMsg, Globals.Log_Type_LOGIN, Globals.Log_Leavel_INFO);
+				
+			} else {
+				msg = "用户名或密码错误,请重新登录!";
+				suc = false;
+			}
 		}
+		reslutMsg.setMsg(msg);
+		reslutMsg.setSuccess(suc);
 		return reslutMsg;
 	}
 

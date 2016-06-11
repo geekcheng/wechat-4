@@ -1,9 +1,6 @@
 package com.cdeledu.service;
 
-import java.util.List;
 import java.util.Set;
-
-import com.cdeledu.model.personManage.UserInfoBean;
 
 /**
  * @类描述: 系统业务处理接口
@@ -13,14 +10,6 @@ import com.cdeledu.model.personManage.UserInfoBean;
  * @since: JDK 1.7
  */
 public interface SystemService {
-	/**
-	 * @方法: 登陆用户检查
-	 * @创建人:独泪了无痕
-	 * @param userInfo
-	 * @return
-	 * @throws Exception
-	 */
-	public UserInfoBean checkUserExits(UserInfoBean userInfo) throws Exception;
 
 	/**
 	 * @方法: 日志添加
