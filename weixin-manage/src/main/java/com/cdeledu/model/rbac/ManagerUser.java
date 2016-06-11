@@ -39,84 +39,73 @@ public class ManagerUser implements Serializable {
 	private Integer status;
 	@NotBlank(message = "账号创建时间")
 	private Date createTime;
-
+	//验证码
+	@NotBlank
+	private String imageCaptcha;
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public Integer getUserType() {
 		return UserType;
 	}
-
 	public void setUserType(Integer userType) {
 		UserType = userType;
 	}
-
 	public Date getLast_login_time() {
 		return last_login_time;
 	}
-
 	public void setLast_login_time(Date last_login_time) {
 		this.last_login_time = last_login_time;
 	}
-
 	public String getLast_login_ip() {
 		return last_login_ip;
 	}
-
 	public void setLast_login_ip(String last_login_ip) {
 		this.last_login_ip = last_login_ip;
 	}
-
 	public Integer getLogin_count() {
 		return login_count;
 	}
-
 	public void setLogin_count(Integer login_count) {
 		this.login_count = login_count;
 	}
-
 	public String getUserDesc() {
 		return userDesc;
 	}
-
 	public void setUserDesc(String userDesc) {
 		this.userDesc = userDesc;
 	}
-
 	public Integer getStatus() {
 		return status;
 	}
-
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 	public Date getCreateTime() {
 		return createTime;
 	}
-
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	public String getImageCaptcha() {
+		return imageCaptcha;
+	}
+	public void setImageCaptcha(String imageCaptcha) {
+		this.imageCaptcha = imageCaptcha;
 	}
 }

@@ -58,3 +58,14 @@ function show_loading()
 	$('.msg_bg').height($(document).height());
 	$('.loading').css('margin-top',scroll_height+240);
 }
+
+//表单晃动
+function jrumble() {
+	$('.login_form').jrumble({
+		x : 4,
+		y : 0,
+		rotation : 0
+	});
+	$('.login_form').trigger('startRumble');
+	setTimeout('$(".login_form").trigger("stopRumble")', 500);
+}

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,7 @@ public class LoginController extends BaseController {
 	@Autowired
 	private SystemService systemService;
 
-	private String msg = null;
+	private String logMsg = null;
 
 	/** ----------------------------------------------------- Fields end */
 	/**
@@ -59,17 +60,24 @@ public class LoginController extends BaseController {
 			ManagerUser user) {
 		AjaxJson reslutMsg = new AjaxJson();
 		HttpSession session = ContextHolderUtils.getSession();
+		String imageCaptcha = (String)session.getAttribute(Globals.IMAGECAPTCHA);
+		
+		if(StringUtils.isEmpty(imageCaptcha)|| imageCaptcha.equals(user.getImageCaptcha())){
+			reslutMsg.setMsg("验证码错误，请重新输入");
+			reslutMsg.setSuccess(false);
+			return reslutMsg;
+		}
 		// 密码加密(暂时搁置)
 		ManagerUser managerUser = userService.checkUserExits(user);
 		if (null != managerUser) {
-			msg = "用户: " + user.getUserName() + "登录成功";
+			logMsg = "用户: " + user.getUserName() + "登录成功";
 			SessionInfo sessionInfo = new SessionInfo();
 			sessionInfo.setManagerUser(managerUser);
 			session.setMaxInactiveInterval(60 * 30);
 			session.setAttribute(Globals.USER_SESSION, sessionInfo);
 
 			// 添加登陆日志
-			systemService.addLog(msg, Globals.Log_Type_LOGIN, Globals.Log_Leavel_INFO);
+			systemService.addLog(logMsg, Globals.Log_Type_LOGIN, Globals.Log_Leavel_INFO);
 		} else {
 			reslutMsg.setMsg("用户名或密码错误!");
 			reslutMsg.setSuccess(false);
@@ -111,8 +119,8 @@ public class LoginController extends BaseController {
 		if (null != managerUser) {
 			// 注销该操作用户
 			session.removeAttribute(Globals.USER_SESSION);
-			msg = "用户" + managerUser.getUserName() + "已退出";
-			systemService.addLog(msg, Globals.Log_Type_EXIT, Globals.Log_Leavel_INFO);
+			logMsg = "用户" + managerUser.getUserName() + "已退出";
+			systemService.addLog(logMsg, Globals.Log_Type_EXIT, Globals.Log_Leavel_INFO);
 		}
 		return new ModelAndView(new RedirectView("loginController.shtml?doLogin"));
 	}
