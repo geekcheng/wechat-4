@@ -16,7 +16,6 @@ import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.service.SystemService;
 import com.cdeledu.util.ContextHolderUtils;
 import com.cdeledu.util.ResourceUtil;
-import com.google.common.collect.Lists;
 
 /**
  * @类描述: 权限拦截器

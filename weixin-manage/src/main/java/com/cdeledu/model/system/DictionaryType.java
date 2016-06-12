@@ -3,10 +3,6 @@ package com.cdeledu.model.system;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 /**
  * @类描述: 系统字典表类型
  * @创建者: 皇族灬战狼

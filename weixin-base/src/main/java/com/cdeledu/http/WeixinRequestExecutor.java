@@ -21,13 +21,13 @@ public class WeixinRequestExecutor {
 	/** ---------------------------------------------- PrivateMethod start */
 	private WeixinResponse doRequest(HttpRequest request) throws WeixinException {
 		try {
-			// 请求日志
+			/*// 请求日志
 			logger.info("weixin request >> " + request.getMethod() + " " + request.getUri().toString());
 			HttpResponse httpResponse= null;
 			logger.info("weixin response << " + httpResponse.getProtocol()
-			+ httpResponse.getStatus().toString() );
+			+ httpResponse.getStatus().toString() );*/
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		return null;
 	}

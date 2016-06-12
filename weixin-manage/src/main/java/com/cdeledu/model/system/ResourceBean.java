@@ -2,10 +2,6 @@ package com.cdeledu.model.system;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 /**
  * @类描述: 资源表实体类
  * @创建者: 皇族灬战狼
