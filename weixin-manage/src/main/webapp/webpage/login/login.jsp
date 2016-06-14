@@ -46,15 +46,15 @@
 					<div class="form-group">
 						<label for="captcha" class="t">验证码</label>
 						<input id="captcha" name="captcha" value="" type="text" 
-							class="form-control x164 in">
+							class="form-control x164 in" autocomplete="off">
 						<img id="captcha_img" alt="点击更换" title="看不清？换一张试试" 
 							src="${_currConText }/plug-in/login/images/imageCaptcha.jsp" 
-							onclick="javascript:loadimage();" class="m">
+							onclick="javascript:loadimage(); return false;" class="m">
 					</div>
 					<div class="form-group space">
 						<label class="t"></label>　　　
 						<button type="button"  id="submit_btn" 
-						class="btn btn-primary btn-lg">&nbsp;登&nbsp;录&nbsp </button>
+						class="btn btn-primary btn-lg">&nbsp;登&nbsp;录&nbsp; </button>
 						<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
 					</div>
 				</form>
