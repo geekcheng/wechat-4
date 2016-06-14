@@ -8,5 +8,24 @@ package com.cdeledu.type;
  * @since: JDK 1.7
  */
 public enum BrowserType {
-	IE10, IE9, IE8, IE7, IE6, Firefox, Safari, Chrome, Opera, Camino, Gecko
+	IE10, 
+	IE9, 
+	IE8, 
+	IE7, 
+	IE6, 
+	Firefox, 
+	Safari, 
+	Chrome, 
+	Opera, 
+	Camino,
+	Sougou,
+	QQ,
+	TT,
+	Liebao,
+	UC,
+	Maxthon, // 傲游
+	WorldBrowser,
+	TaoBao,
+	Gecko,
+	other
 }
