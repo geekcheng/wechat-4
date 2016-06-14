@@ -18,7 +18,8 @@ import com.cdeledu.model.rbac.ManagerUser;
  */
 public class ResourceUtil {
 	/** ----------------------------------------------------- Fields start */
-	private static final ResourceBundle sysConfig = ResourceBundle.getBundle("properties/sysConfig");
+	private static final ResourceBundle sysConfig = ResourceBundle
+			.getBundle("properties/sysConfig");
 	private static final ResourceBundle dbConfig = ResourceBundle.getBundle("properties/dbConfig");
 
 	/** ----------------------------------------------------- Fields end */
@@ -33,7 +34,7 @@ public class ResourceUtil {
 	}
 
 	/**
-	 * @方法:TODO(这里用一句话描述这个方法的作用)
+	 * @方法:获取session定义名称
 	 * @创建人:独泪了无痕
 	 * @param sessionName
 	 * @return
