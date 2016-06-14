@@ -7,9 +7,9 @@ import java.util.Date;
  * @类描述: 登录日志表
  * @创建者: 皇族灬战狼
  * @创建时间: 2016年4月15日 上午11:55:37
- * @版本: V1.0
+ * @版本: V1.2
  * @since: JDK 1.7
- * @see <a href="">TODO(连接内容简介)</a>
+ * @see <a href=""></a>
  */
 public class LoginLog implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +24,14 @@ public class LoginLog implements Serializable {
 	private Integer loginStatus;
 	// 登录浏览器
 	private Integer brower;
+	// 日志级别
+	private Integer logLeavel;
+	// 日志类型
+	private Integer opType;
+	// 日志内容
+	private String logContent;
+	// 记录时间
+	private Date createTime;
 
 	public Integer getId() {
 		return id;
@@ -71,5 +79,37 @@ public class LoginLog implements Serializable {
 
 	public void setBrower(Integer brower) {
 		this.brower = brower;
+	}
+
+	public Integer getLogLeavel() {
+		return logLeavel;
+	}
+
+	public void setLogLeavel(Integer logLeavel) {
+		this.logLeavel = logLeavel;
+	}
+
+	public Integer getOpType() {
+		return opType;
+	}
+
+	public void setOpType(Integer opType) {
+		this.opType = opType;
+	}
+
+	public String getLogContent() {
+		return logContent;
+	}
+
+	public void setLogContent(String logContent) {
+		this.logContent = logContent;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

@@ -1,5 +1,7 @@
 package com.cdeledu.controller.systemController.loginController;
 
+import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,7 @@ import com.cdeledu.controller.BaseController;
 import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.model.rbac.ManagerUser;
+import com.cdeledu.model.system.LoginLog;
 import com.cdeledu.service.SystemService;
 import com.cdeledu.service.UserService;
 import com.cdeledu.util.ContextHolderUtils;
@@ -44,7 +47,7 @@ public class LoginController extends BaseController {
 	/** ----------------------------------------------------- Fields end */
 	/**
 	 * @方法:登陆验证
-	 * 			<ul>
+	 *          <ul>
 	 *          <li>① 缺少登录验证码</li>
 	 *          <li>② 缺少密码加密</li>
 	 *          </ul>
@@ -61,35 +64,48 @@ public class LoginController extends BaseController {
 		AjaxJson reslutMsg = new AjaxJson();
 		HttpSession session = ContextHolderUtils.getSession();
 		String imageCaptcha = (String) session.getAttribute(Globals.IMAGECAPTCHA);
-		String msg = "";
 		boolean suc = true;
+		int loginStatus = 0;
+		int logLeavel = 0;
+		LoginLog loginLog = new LoginLog();
 
 		if (StringUtils.isEmpty(imageCaptcha) || imageCaptcha.equals(user.getImageCaptcha())) {
-			msg = "验证码错误，请重新输入";
+			logMsg = "验证码错误，请重新输入";
 			suc = false;
 		} else {
 			// 密码加密(暂时搁置)
 			ManagerUser managerUser = userService.checkUserExits(user);
-			if (null != managerUser && null !=managerUser.getEnabled()) {
-				if(managerUser.getEnabled() == 1)
+			if (null != managerUser && null != managerUser.getEnabled()) {
+				if (managerUser.getEnabled() == 1) {
 					logMsg = "用户: " + user.getUserName() + "登录成功";
-				else 
+					logLeavel= Globals.Log_Leavel_INFO;
+					loginStatus = 1;
+				} else {
 					logMsg = "用户: " + user.getUserName() + "登录失败。原因:账号未通过审核";
-				
+					loginStatus=0;
+					logLeavel= Globals.Log_Leavel_WARRING;
+				}
+
 				SessionInfo sessionInfo = new SessionInfo();
 				sessionInfo.setManagerUser(managerUser);
 				session.setMaxInactiveInterval(60 * 30);
 				session.setAttribute(Globals.USER_SESSION, sessionInfo);
 
 				// 添加登陆日志
-				systemService.addLog(logMsg, Globals.Log_Type_LOGIN, Globals.Log_Leavel_INFO);
-				
+				loginLog.setUserCode(managerUser.getId());
+				loginLog.setLogContent(logMsg);
+				loginLog.setLoginStatus(loginStatus);
+				loginLog.setLogLeavel(logLeavel);
+				loginLog.setOpType(Globals.Log_Type_LOGIN);
+				// loginLog.setIpAddress(""); // 登录的IP地址
+				// loginLog.setBrower(""); // 登录的浏览器
+				systemService.addLoginLog(loginLog);
 			} else {
-				msg = "用户名或密码错误,请重新登录!";
+				logMsg = "用户名或密码错误,请重新登录!";
 				suc = false;
 			}
 		}
-		reslutMsg.setMsg(msg);
+		reslutMsg.setMsg(logMsg);
 		reslutMsg.setSuccess(suc);
 		return reslutMsg;
 	}
@@ -129,7 +145,16 @@ public class LoginController extends BaseController {
 			// 注销该操作用户
 			session.removeAttribute(Globals.USER_SESSION);
 			logMsg = "用户" + managerUser.getUserName() + "已退出";
-			systemService.addLog(logMsg, Globals.Log_Type_EXIT, Globals.Log_Leavel_INFO);
+			// 添加登陆日志
+			LoginLog loginLog = new LoginLog();
+			loginLog.setUserCode(managerUser.getId());
+			loginLog.setLogContent(logMsg);
+			loginLog.setLoginStatus(1);
+			loginLog.setLogLeavel(Globals.Log_Type_EXIT);
+			loginLog.setOpType(Globals.Log_Type_LOGIN);
+			// loginLog.setIpAddress(""); // 登录的IP地址
+			// loginLog.setBrower(""); // 登录的浏览器
+			systemService.addLoginLog(loginLog);
 		}
 		return new ModelAndView(new RedirectView("loginController.shtml?doLogin"));
 	}
