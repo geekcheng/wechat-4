@@ -41,6 +41,15 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->  
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
 
 	<!-- ====================================================================== 
 		默认的模型视图名称解析器 (如果你要访问index视图,它会自动 prefix(前缀)+index+suffix(后缀) -->
