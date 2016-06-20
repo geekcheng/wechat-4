@@ -1,7 +1,5 @@
 package com.cdeledu.controller.systemController.loginController;
 
-import java.util.StringTokenizer;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -68,8 +66,8 @@ public class LoginController extends BaseController {
 		int loginStatus = 0;
 		int logLeavel = 0;
 		LoginLog loginLog = new LoginLog();
-
-		if (StringUtils.isEmpty(imageCaptcha) || imageCaptcha.equals(user.getImageCaptcha())) {
+		
+		if (StringUtils.isEmpty(imageCaptcha) || !imageCaptcha.equals(user.getImageCaptcha())) {
 			logMsg = "验证码错误，请重新输入";
 			suc = false;
 		} else {

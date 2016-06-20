@@ -45,11 +45,11 @@
 					</div>
 					<div class="form-group">
 						<label for="captcha" class="t">验证码</label>
-						<input id="captcha" name="captcha" value="" type="text" 
+						<input id="imageCaptcha" name="imageCaptcha" value="" type="text" 
 							class="form-control x164 in" autocomplete="off">
 						<img id="captcha_img" alt="点击更换" title="看不清？换一张试试" 
 							src="${_currConText }/plug-in/login/images/imageCaptcha.jsp" 
-							onclick="javascript:loadimage(); return false;" class="m">
+							onclick="javascript:loadimage();" class="m">
 					</div>
 					<div class="form-group space">
 						<label class="t"></label>　　　
