@@ -34,6 +34,7 @@
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
+						<!-- 防止在使用IE8请求用@ResponseBody注解返回json格式数据时出现下载页面 -->
 						<value>text/html;charset=UTF-8</value>
 						<value>application/json;charset=UTF-8</value>
 					</list>
