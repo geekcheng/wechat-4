@@ -46,29 +46,15 @@
 	<!-- ====================================================================== 
 		默认的模型视图名称解析器 (如果你要访问index视图,它会自动 prefix(前缀)+index+suffix(后缀) -->
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="cache" value="false" />
-		<property name="contentType">
-			<value>text/html;charset=UTF-8</value>
-		</property>
-		<!-- 如果你要访问index视图， 它会自动 prefix(前缀) + index + suffix(后缀) -->
-		<property name="prefix" value="/webpage/" />
-		<!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
-		<property name="suffix" value=".jsp" />
-	</bean>
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" p:cache="false"
+		p:contentType="text/html;charset=UTF-8" p:prefix="/webpage/" p:suffix=".jsp" />
 
 	<!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
 	<bean id="defaultViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:order="3">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="contentType" value="text/html" />
-		<property name="prefix" value="/webpage/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+		p:order="3" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:contentType="text/html" p:prefix="/webpage/" p:suffix=".jsp" />
 
 	<!-- ====================================================================== 
 		直接跳转:对模型视图名称的解析，即定义JSP文件的位置，在模型视图名称添加前后缀 -->
