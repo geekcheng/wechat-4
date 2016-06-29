@@ -102,7 +102,7 @@
 			<version>${druid.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- mybatis-->
+		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -199,8 +199,15 @@
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-
 		<!-- springSource (结束) -->
+
+		<!-- Hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>weixin-manage</finalName>
