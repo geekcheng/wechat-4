@@ -28,7 +28,7 @@ public class SpringExceptionHandler implements HandlerExceptionResolver {
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
 			Object object, Exception exception) {
 		String exceptionMessage = ExceptionHelperUtil.getExceptionMessage(exception);
-		logger.error(exceptionMessage);
+		logger.error(exceptionMessage); //把漏网的异常信息记入日志  
 		System.out.println("exception name: " + exception.getClass().toString());// 异常名
 		System.out.println("exception cause: " + exception.getCause());
 		System.out.println("exception msg: " + exception.getLocalizedMessage());
