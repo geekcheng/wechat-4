@@ -1,7 +1,10 @@
 package com.cdeledu.controller.dictController;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cdeledu.controller.BaseController;
 
@@ -15,5 +18,15 @@ import com.cdeledu.controller.BaseController;
 @Controller
 @RequestMapping(value = "DictView")
 public class DictViewController extends BaseController {
-
+	/**
+	 * @方法描述: 类型字典列表页面跳转
+	 * @创建者: 皇族灬战狼
+	 * @创建时间: 2016年8月8日 下午3:30:15
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(params = "init")
+	public ModelAndView druid(HttpServletRequest request) {
+		return new ModelAndView("system/dict/dictInit");
+	}
 }
