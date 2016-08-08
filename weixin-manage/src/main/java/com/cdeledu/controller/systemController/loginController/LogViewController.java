@@ -28,7 +28,7 @@ public class LogViewController  extends BaseController{
 	 * @创建人:独泪了无痕
 	 * @return
 	 */
-	@RequestMapping(params = "log")
+	@RequestMapping(params = "init")
 	public ModelAndView log() {
 		return new ModelAndView("system/log/logInit");
 	}
