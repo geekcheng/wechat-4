@@ -10,6 +10,10 @@ weixin
 * **weixin-base**
 
 		`微信支付(刷卡/扫码/JS/APP/WAP/现金红包/企业付款)`
+		
+* **weixin-generatorSql**
+
+		`使用MyBatis Generator自动创建代码`
 
 * **weixin-mp**
 
@@ -18,12 +22,13 @@ weixin
 * **weixin-qy**
 
 		`企业号API封装`
-  
+		
 * **weixin-server**
-  
+
 		`netty服务器&消息分发`
+		
 * **weixin-manage**
-  
+
 		`微信后台管理`
 
 [更新LOG](./CHANGE.md)

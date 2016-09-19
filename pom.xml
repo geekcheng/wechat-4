@@ -104,6 +104,8 @@
 		<module>weixin-qy</module>
 		<module>weixin-server</module>
 		<module>weixin-manage</module>
+		<module>GeneratorSqlmap</module>
+		<module>weixin-generatorSql</module>
 	</modules>
 
 	<!-- ======== <dependency></dependency>===================================================== 
