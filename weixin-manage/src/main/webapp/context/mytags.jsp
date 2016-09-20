@@ -10,4 +10,4 @@
 <%--当前Context --%>
 <c:set var="_currConText" value="${pageContext.request.contextPath}" />
 <%-- 项目名称--%>
-<c:set var="_currProject" value="微信后台管理系统" />
+<c:set var="_currProject" value="综合信息服务管理平台" />
