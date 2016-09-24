@@ -108,3 +108,26 @@ dllwh.isNull = function(exp) {
 		return false;
 	return true;
 }
+
+/**
+ * 将指定form参数转换为json对象
+ * 
+ * @param conditionFormId
+ * @return
+ */
+function getQueryParams(conditionFormId) {
+	var searchCondition = getJqueryObjById(conditionFormId).serialize();
+	var obj = {};
+	var pairs = searchCondition.split('&');
+	var name, value;
+
+	$.each(pairs, function(i, pair) {
+		pair = pair.split('=');
+		name = decodeURIComponent(pair[0]);
+		value = decodeURIComponent(pair[1]);
+
+		obj[name] = !obj[name] ? value : [].concat(obj[name]).concat(value); // 若有多个同名称的参数，则拼接
+		});
+
+	return obj;
+}
