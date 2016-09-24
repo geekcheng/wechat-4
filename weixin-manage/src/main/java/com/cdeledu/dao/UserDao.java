@@ -10,7 +10,7 @@ import com.cdeledu.model.rbac.ManagerUser;
  * @since: JDK 1.7
  * @see <a href="">TODO(连接内容简介)</a>
  */
-public interface UserDao {
+public interface UserDao extends commonMapper<ManagerUser>{
 	/** 检查用户是否存在 */
 	public ManagerUser checkUserExits(ManagerUser managerUser);
 }

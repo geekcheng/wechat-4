@@ -1,12 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的 
+	例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀) -->
 <mapper namespace="com.cdeledu.dao.UserDao">
+	<!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复.
+		使用parameterType属性指明查询时使用的参数类型，
+		resultType属性指明查询返回的结果集类型 
+		resultType="com.cdeledu.model.rbac.ManagerUser"就表示将查询结果封装成一个ManagerUser类的对象返回 
+		ManagerUser类就是sys_manager_manageruser表所对应的实体类 -->
+	<sql id="findForJdbc_body">
+		SELECT * from sys_manager_manageruser
+		<where>
+			<if test="userName != null ">  userName =#userName# </if>
+			<if test="password != null ">  password =#password# </if>
+			<if test="usertype != null ">  usertype=#usertype# </if>
+			<if test="realname != null ">  realname=#realname# </if>
+			<if test="email != null "> email like '%${email}%'  </if>
+			<if test="emailstatus != null "> emailstatus=#emailstatus#  </if>
+			<if test="usersex != null "> usersex=#usersex#  </if>
+			<if test="mobile != null "> mobile like '%${mobile}$%'  </if>
+			<if test="telephone != null "> telephone like '%${telephone}$%'  </if>
+			<if test="isvisible != null "> isvisible=#isvisible#  </if>
+			<if test="enabled != null "> enabled=#enabled#  </if>
+		</where>
+	</sql>
+	
+	<select id="findForJdbc"  parameterType="com.cdeledu.model.rbac.ManagerUser"
+		resultType="com.cdeledu.model.rbac.ManagerUser">
+		select * from(
+			<include refid="findForJdbc_body"/>
+		) as myTable
+	</select>
+	
+	<select id="getCountForJdbcParam" parameterType="com.cdeledu.model.rbac.ManagerUser"
+		resultType="java.lang.Integer">
+		select count(*) from(
+			<include refid="findForJdbc_body"/>
+		) as myTable
+	</select>
+	
+	<!-- 通过主键查询 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" 
+		resultType="com.cdeledu.model.rbac.ManagerUser">
+		select
+			*
+		from sys_manager_manageruser where id = #{id}
+	</select>
+	
+	<select id="findOneForJdbc" parameterType="com.cdeledu.model.rbac.ManagerUser"
+		resultType="com.cdeledu.model.rbac.ManagerUser">
+		select top 1 * from(
+			<include refid="findForJdbc_body"/>
+		) as myTable
+	</select>
+	
 	<!-- 验证用户是否存在 -->
 	<select id="checkUserExits" parameterType="com.cdeledu.model.rbac.ManagerUser"
 		resultType="com.cdeledu.model.rbac.ManagerUser">
-
+			SELECT * from sys_manager_manageruser WHERE userName =#{userName} AND `password` = #{password}
 	</select>
+	
 	<!-- 创建新的用户 -->
-	<insert id="insertUser" parameterType="com.cdeledu.model.rbac.ManagerUser"></insert>
+	<insert id="insertSelective" parameterType="com.cdeledu.model.rbac.ManagerUser" 
+		useGeneratedKeys="true" keyProperty="id" >
+		insert into sys_manager_manageruser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">id,</if>
+			<if test="username != null">userName,</if>
+			<if test="password != null">password,</if>
+			<if test="usertype != null">userType,</if>
+			<if test="realname != null">realName,</if>
+			<if test="email != null">email,</if>
+			<if test="emailstatus != null">emailstatus,</if>
+			<if test="usersex != null">userSex,</if>
+			<if test="mobile != null">mobile,</if>
+			<if test="telephone != null">telephone,</if>
+			<if test="signature != null">signature,</if>
+			<if test="isvisible != null">isVisible,</if>
+			<if test="enabled != null">enabled,</if>
+			<if test="userdesc != null">userDesc,</if>
+			<if test="createtime != null">createTime,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="username != null">#{username},</if>
+			<if test="password != null">#{password},</if>
+			<if test="usertype != null">#{usertype},</if>
+			<if test="realname != null">#{realname},</if>
+			<if test="email != null">#{email},</if>
+			<if test="emailstatus != null">#{emailstatus},</if>
+			<if test="usersex != null">#{usersex},</if>
+			<if test="mobile != null">#{mobile},</if>
+			<if test="telephone != null">#{telephone},</if>
+			<if test="signature != null">#{signature},</if>
+			<if test="isvisible != null">#{isvisible},</if>
+			<if test="enabled != null">#{enabled},</if>
+			<if test="userdesc != null">#{userdesc},</if>
+			<if test="createtime != null">#{createtime},</if>
+		</trim>
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="updateByPrimaryKey" parameterType="com.cdeledu.model.rbac.ManagerUser" >
+	
+	</update>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		delete from sys_manager_manageruser where id = #{id}
+	</delete>
+	<delete id="delete" parameterType="com.cdeledu.model.rbac.ManagerUser"  >
+		delete from sys_manager_manageruser where id = #{id}
+	</delete>
+	
 </mapper>
