@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<!-- 引入父模块 -->
 	<parent>
 		<groupId>com.cdeledu</groupId>
 		<artifactId>wechat</artifactId>
@@ -12,7 +13,7 @@
 	<packaging>war</packaging>
 	<name>weixin-manage webApp</name>
 	<url>http://maven.apache.org</url>
-	<description>微信功能后台管理</description>
+	<description>微信功能后台管理系统</description>
 	<dependencies>
 		<!-- 配置子项目的相关调用 -->
 		<dependency>
@@ -75,7 +76,7 @@
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- web 依赖包(结束) -->
@@ -217,11 +218,15 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<!-- tomcat7部署管理路径 -->
-					<url>http://localhost:80/manager/text</url>
+					<!-- tomcat7部署管理路径:http://ip地址:端口/manager/text -->
+					<url>http://localhost:80/manager/text</url> <!-- 注意此处的url -->
+					<!--  此处的名字必须和setting.xml中配置的ID一致  -->
+					<!-- <server>tomcat7</server> -->
+					<!--settings.xml文件已配置，此处可不配-->
 					<username>admin</username>
-					<password>admin</password>
-					<path>/weixin-manage</path>
+					<!--settings.xml文件已配置，此处可不配-->
+					<password>admin</password> 
+					<path>/weixin-manage</path><!-- 此处的名字是项目发布的工程名-->
 					<charset>UTF-8</charset>
 					<encoding>UTF-8</encoding>
 					<!-- 运行redeploy命令前，要能正常访问http://localhost:80/manager -->
