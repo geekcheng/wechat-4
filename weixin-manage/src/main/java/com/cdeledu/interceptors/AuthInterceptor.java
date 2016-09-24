@@ -59,7 +59,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		Integer userId = sessioninfo.getManagerUser().getId();
 		// 查询当前登录用户是否具有当前访问地址
 		Integer resultCount = systemService.getAuthByuserIdAndAuthPath(userId, requestPath);
-		if(resultCount > 0)
+		if(null !=resultCount && resultCount > 0)
 			return true;
 		else 
 			return false;
@@ -85,9 +85,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 	 * 在controller前拦截
 	 */
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-		String requestUri = request.getRequestURI();
-		String contextPath = request.getContextPath();
-		String url = requestUri.substring(contextPath.length());
+		// String requestUri = request.getRequestURI();
+		// String contextPath = request.getContextPath();
+		// String url = requestUri.substring(contextPath.length());
 		// 用户访问的资源地址
 		String requestPath = ResourceUtil.getRequestPath(request);// 用户访问的资源地址
 		HttpSession session = ContextHolderUtils.getSession();

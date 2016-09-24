@@ -70,6 +70,8 @@
 				<value>loginController.shtml?doLogin</value>
 				<value>loginController.shtml?checkuser</value>
 				<value>loginController.shtml?noAuth</value>
+				<value>iconController.do?saveIcon</value>
+				<value>system.do?checkBrowser</value>
 			</list>
 		</property>
 	</bean>
