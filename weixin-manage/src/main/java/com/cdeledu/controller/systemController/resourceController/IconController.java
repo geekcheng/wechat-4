@@ -65,31 +65,7 @@ public class IconController {
 		result.setMsg(message);
 		// 图标的css样式
 		String css = ".back{background:url('../images/back.png') no-repeat;}";
-		write(request, css);
 		return result;
-	}
-	
-	/**
-	 * @方法描述: 添加图片样式
-	 * @创建者: 皇族灬战狼
-	 * @创建时间: 2016年9月23日 下午4:15:18
-	 * @param request
-	 * @param css
-	 */
-	protected void write(HttpServletRequest request, String css) {
-		try {
-			String path = ContextHolderUtils.getSession().getServletContext().getRealPath("/plug-in/icon/css/icons.css");
-			File file = new File(path);
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			FileWriter out = new FileWriter(file, true);
-			out.write("\r\n");
-			out.write(css);
-			out.close();
-		} catch (Exception e) {
-			
-		}
 	}
 
 	/**
@@ -99,7 +75,7 @@ public class IconController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(params = "del")
+	@RequestMapping(params = "delIcon")
 	@ResponseBody
 	public AjaxJson del(HttpServletRequest request) {
 		AjaxJson result = new AjaxJson();
