@@ -2,21 +2,24 @@ package com.cdeledu.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cdeledu.dao.UserDao;
 import com.cdeledu.model.personManage.UserInfoBean;
 import com.cdeledu.model.rbac.ManagerUser;
 import com.cdeledu.service.UserService;
 import com.cdeledu.util.PasswordUtil;
-import com.google.common.collect.Lists;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
 	/** ----------------------------------------------------- Fields start */
-
+	@Resource
+	private UserDao userDao;
 	/** ----------------------------------------------------- Fields end */
 
 	@Override
@@ -26,12 +29,8 @@ public class UserServiceImpl implements UserService {
 		ManagerUser managerUser = new ManagerUser();
 		managerUser.setUserName(user.getUserName());
 		managerUser.setPassword(password);
-
-		List<ManagerUser> userList = Lists.newArrayList();
-		if (null != userList && userList.size() > 0) {
-			return userList.get(0);
-		}
-		return null;
+		
+		return userDao.checkUserExits(managerUser);
 	}
 
 	@Override
