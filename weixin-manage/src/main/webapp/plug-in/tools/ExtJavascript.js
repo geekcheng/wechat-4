@@ -4,6 +4,15 @@
 var dllwh = dllwh || {};
 dllwh.data = dllwh.data || {};// 用于存放临时的数据或者对象
 
+
+/**
+ * 用于在无前台javascript 代码的情况下的提示
+ * 
+ * @return
+ */
+dllwh.WebReason = function() {
+	$.messager.alert("操作提醒", "基于JavaSctrpt原因，该扩展功能尚未实现，敬请期待！", "info");
+}
 /**
  * js获取项目根路径
  */
