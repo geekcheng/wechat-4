@@ -1,5 +1,7 @@
 package com.cdeledu.service;
 
-public interface RoleService {
+import com.cdeledu.model.rbac.Role;
+
+public interface RoleService extends BaseService<Role> {
 
 }

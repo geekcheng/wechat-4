@@ -1,5 +1,7 @@
 package com.cdeledu.service;
 
-public interface IconService {
+import com.cdeledu.model.system.IconResource;
+
+public interface IconService extends BaseService<IconResource> {
 
 }

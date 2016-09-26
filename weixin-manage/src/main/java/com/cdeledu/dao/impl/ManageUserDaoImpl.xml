@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
 <!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的 
 	例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀) -->
-<mapper namespace="com.cdeledu.dao.UserDao">
+<mapper namespace="com.cdeledu.dao.ManagerUserDao">
 	<!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复.
 		使用parameterType属性指明查询时使用的参数类型，
 		resultType属性指明查询返回的结果集类型 
@@ -11,17 +12,39 @@
 	<sql id="findForJdbc_body">
 		SELECT * from sys_manager_manageruser
 		<where>
-			<if test="userName != null ">  userName =#userName# </if>
-			<if test="password != null ">  password =#password# </if>
-			<if test="usertype != null ">  usertype=#usertype# </if>
-			<if test="realname != null ">  realname=#realname# </if>
-			<if test="email != null "> email like '%${email}%'  </if>
-			<if test="emailstatus != null "> emailstatus=#emailstatus#  </if>
-			<if test="usersex != null "> usersex=#usersex#  </if>
-			<if test="mobile != null "> mobile like '%${mobile}$%'  </if>
-			<if test="telephone != null "> telephone like '%${telephone}$%'  </if>
-			<if test="isvisible != null "> isvisible=#isvisible#  </if>
-			<if test="enabled != null "> enabled=#enabled#  </if>
+			<if test="userName != null and userName != '' ">  
+				and userName  LIKE CONCAT(CONCAT('%', #{userName}),'%') 
+			</if>
+			<if test="password != null and password != '' ">  
+				and password =#{password} 
+			</if>
+			<if test="usertype != null and usertype != ''">
+				and usertype=#{usertype}
+			</if>
+			<if test="realname != null and realname != '' ">  
+				and realname=#{realname}
+			</if>
+			<if test="email != null and email != '' "> 
+				and email  LIKE CONCAT(CONCAT('%', #{email}),'%')
+			</if>
+			<if test="emailstatus != null and emailstatus != '' ">
+				and emailstatus=#{emailstatus} 
+			</if>
+			<if test="usersex != null and usersex != '' ">
+				and usersex=#{usersex}
+			</if>
+			<if test="mobile != null and mobile != '' ">
+				and mobile like '%${mobile}$%'
+			</if>
+			<if test="telephone != null and telephone != '' ">
+				and telephone like '%${telephone}$%'
+			</if>
+			<if test="isvisible != null and isvisible != '' ">
+				and isvisible=#isvisible#
+			</if>
+			<if test="enabled != null and enabled != '' ">
+				and enabled=#enabled#
+			</if>
 		</where>
 	</sql>
 	
@@ -65,7 +88,6 @@
 		useGeneratedKeys="true" keyProperty="id" >
 		insert into sys_manager_manageruser
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">id,</if>
 			<if test="username != null">userName,</if>
 			<if test="password != null">password,</if>
 			<if test="usertype != null">userType,</if>
@@ -81,8 +103,8 @@
 			<if test="userdesc != null">userDesc,</if>
 			<if test="createtime != null">createTime,</if>
 		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">#{id},</if>
+		values 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="username != null">#{username},</if>
 			<if test="password != null">#{password},</if>
 			<if test="usertype != null">#{usertype},</if>
@@ -102,12 +124,59 @@
 	
 	<!-- 更新 -->
 	<update id="updateByPrimaryKey" parameterType="com.cdeledu.model.rbac.ManagerUser" >
-	
+		update sys_manager_manageruser
+		<trim prefix="SET" suffix="" suffixOverrides=",">
+			<if test="userName != null and userName != " > 
+				userName = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null and password != '' " >
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="usertype != null and usertype != ''" >
+				userType = #{usertype,jdbcType=INTEGER},
+			</if>
+			<if test="realname != null and realname != '' ">
+				realName = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null and email != '' " >
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="emailstatus != null and emailstatus != '' " >
+				emailstatus = #{emailstatus,jdbcType=BIT},
+			</if>
+			<if test="usersex != null and usersex != '' ">
+				userSex = #{usersex,jdbcType=TINYINT},
+			</if>
+			<if test="mobile != null and mobile != '' ">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null and telephone != '' ">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="signature != null and signature != '' " > 
+				signature = #{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="isvisible != null and isvisible != '' " > 
+				isVisible = #{isvisible,jdbcType=BIT},
+			</if>
+			<if test="enabled != null and enabled != '' " >
+				enabled = #{enabled,jdbcType=TINYINT},
+			</if>
+			<if test="userdesc != null AND userdesc != '' " > 
+				userDesc = #{userdesc,jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where id = #{id,jdbcType=INTEGER}
 	</update>
 	
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-		delete from sys_manager_manageruser where id = #{id}
+	<!-- 删除:支持批量删除 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Object" >
+		delete from sys_manager_manageruser where id in 
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
 	</delete>
+	
 	<delete id="delete" parameterType="com.cdeledu.model.rbac.ManagerUser"  >
 		delete from sys_manager_manageruser where id = #{id}
 	</delete>

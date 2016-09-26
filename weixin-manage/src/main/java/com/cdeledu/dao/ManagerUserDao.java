@@ -1,8 +1,8 @@
-package com.cdeledu.service;
+package com.cdeledu.dao;
 
 import com.cdeledu.model.rbac.ManagerUser;
 
-public interface ManagerUserService extends BaseService<ManagerUser> {
+public interface ManagerUserDao extends BaseDao<ManagerUser> {
 	/** 检查用户是否存在 */
 	public ManagerUser checkUserExits(ManagerUser managerUser);
 
