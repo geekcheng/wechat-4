@@ -19,8 +19,8 @@ import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.model.rbac.ManagerUser;
 import com.cdeledu.model.system.LoginLog;
+import com.cdeledu.service.ManagerUserService;
 import com.cdeledu.service.SystemService;
-import com.cdeledu.service.UserService;
 import com.cdeledu.util.ContextHolderUtils;
 import com.cdeledu.util.ResourceUtil;
 
@@ -36,7 +36,7 @@ import com.cdeledu.util.ResourceUtil;
 public class LoginController extends BaseController {
 	/** ----------------------------------------------------- Fields start */
 	@Autowired
-	private UserService userService;
+	private ManagerUserService manageruserService;
 	@Autowired
 	private SystemService systemService;
 
@@ -72,7 +72,7 @@ public class LoginController extends BaseController {
 			suc = false;
 		} else {
 			// 密码加密(暂时搁置)
-			ManagerUser managerUser = userService.checkUserExits(user);
+			ManagerUser managerUser = manageruserService.checkUserExits(user);
 			if (null != managerUser && null != managerUser.getEnabled()) {
 				if (managerUser.getEnabled() == 1) {
 					logMsg = "用户: " + user.getUserName() + "登录成功";
@@ -119,7 +119,7 @@ public class LoginController extends BaseController {
 	public String doLogin(HttpServletRequest request, HttpServletResponse response) {
 		ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		if (null != managerUser) {
-			request.setAttribute("roleName", userService.getUserRole(managerUser));
+			request.setAttribute("roleName", manageruserService.getUserRole(managerUser));
 			request.setAttribute(Globals.USER_SESSION, managerUser);
 			return "main/main";
 		} else {
