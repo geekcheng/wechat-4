@@ -18,6 +18,7 @@ import com.cdeledu.controller.BaseController;
 import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.model.rbac.ManagerUser;
+import com.cdeledu.model.rbac.ManagerUserRole;
 import com.cdeledu.model.system.LoginLog;
 import com.cdeledu.service.ManagerUserService;
 import com.cdeledu.service.SystemService;
@@ -45,10 +46,6 @@ public class LoginController extends BaseController {
 	/** ----------------------------------------------------- Fields end */
 	/**
 	 * @方法:登陆验证
-	 *          <ul>
-	 *          <li>① 缺少登录验证码</li>
-	 *          <li>② 缺少密码加密</li>
-	 *          </ul>
 	 * @创建人:独泪了无痕
 	 * @param request
 	 * @param response
@@ -71,7 +68,6 @@ public class LoginController extends BaseController {
 			logMsg = "验证码错误，请重新输入";
 			suc = false;
 		} else {
-			// 密码加密(暂时搁置)
 			ManagerUser managerUser = manageruserService.checkUserExits(user);
 			if (null != managerUser && null != managerUser.getEnabled()) {
 				if (managerUser.getEnabled() == 1) {
@@ -119,7 +115,7 @@ public class LoginController extends BaseController {
 	public String doLogin(HttpServletRequest request, HttpServletResponse response) {
 		ManagerUser managerUser = ResourceUtil.getSessionUserName();
 		if (null != managerUser) {
-			request.setAttribute("roleName", manageruserService.getUserRole(managerUser));
+			request.setAttribute("roleName", manageruserService.getUserRole(managerUser).getRoleName());
 			request.setAttribute(Globals.USER_SESSION, managerUser);
 			return "main/main";
 		} else {
@@ -173,6 +169,9 @@ public class LoginController extends BaseController {
 			session.removeAttribute(Globals.USER_SESSION);
 			return new ModelAndView(new RedirectView("loginController.do?login"));
 		}
+		
+		ManagerUserRole currentUser =	manageruserService.getUserRole(managerUser);
+		
 		return new ModelAndView("main/left");
 	}
 
@@ -185,6 +184,17 @@ public class LoginController extends BaseController {
 	@RequestMapping(params = "home")
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("main/home");
+	}
+	
+	/**
+	 * @方法:首页跳转
+	 * @创建人:独泪了无痕
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(params = "maintabs")
+	public ModelAndView maintabs(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("main/mainTabs");
 	}
 
 	/**

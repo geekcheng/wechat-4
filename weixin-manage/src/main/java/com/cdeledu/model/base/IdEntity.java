@@ -1,26 +1,21 @@
-package com.cdeledu.model.common;
+package com.cdeledu.model.base;
 
 import java.io.Serializable;
 
-/**
- * 
- * @ClassName: PageInfo
- * @Description: 用于分页
- * @author: 独泪了无痕
- * @date: 2015年8月20日 下午2:18:04
- * @version: V1.0
- * @history:
- */
-public class PageInfo implements Serializable {
+public class IdEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	private int page = 1; // 当前页数:第几页
 	private int rows = 10; // 每页记录数
 	private String sort;// 排序字段名
 	private String order;// 按什么排序(asc,desc)
 
-	public PageInfo() {
-		this.page = 1;
-		this.rows = 10;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public int getPage() {

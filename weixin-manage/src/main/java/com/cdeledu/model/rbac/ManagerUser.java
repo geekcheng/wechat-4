@@ -1,9 +1,10 @@
 package com.cdeledu.model.rbac;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
+
+import com.cdeledu.model.base.IdEntity;
 
 /**
  * 
@@ -13,9 +14,8 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank
  * @版本: V1.2
  * @since: JDK 1.7
  */
-public class ManagerUser implements Serializable {
+public class ManagerUser extends IdEntity {
 	private static final long serialVersionUID = 1L;
-	private Integer id;
 	// 用户名(数字与字母组成)
 	@NotBlank(message = "登陆账号不能为空")
 	private String userName;
@@ -56,14 +56,6 @@ public class ManagerUser implements Serializable {
 	private Integer login_count;
 	@NotBlank(message = "验证码")
 	private String imageCaptcha;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getUserName() {
 		return userName;

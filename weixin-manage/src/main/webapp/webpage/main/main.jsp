@@ -104,7 +104,14 @@
 	</div>
 
 	<!-- 中间-->
-	<div id="mainPanle" region="center" href="webpage/main/center.jsp"></div>
+	<div id="mainPanle" region="center" style="overflow: hidden;">
+		<div id="maintabs" class="easyui-tabs" fit="true" border="false"
+			data-options="tools:'#tab-tools'">
+			<div class="easyui-tab" title="我的桌面" href="loginController.shtml?maintabs" 
+				data-options="iconCls:'icon-home'" style="padding:2px; overflow: hidden;">
+			</div>
+		</div>
+	</div>
 
 	<!-- 右侧 -->
 	<div collapsed="true" region="east" iconCls="icon-reload" title="辅助工具"

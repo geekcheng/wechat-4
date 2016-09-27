@@ -28,95 +28,6 @@
 		<!-- <version>${project.version}</version> -->
 		<!-- </dependency> -->
 
-
-		<!-- web 依赖包(开始) -->
-		<!-- 以防止JSP页面报错所引入的 -->
-		<!-- javaee-api包 注意和项目使用的JDK版本对应 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>${javax.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- javaee-web-api包 注意和项目使用的JDK版本对应 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
-			<version>${javax.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
-			<version>2.2.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- web 依赖包(结束) -->
-
-		<!-- 数据库相关依赖包 (开始) -->
-		<!-- MSYQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- C3P0 -->
-		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>${c3p0.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- 数据源 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${druid.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatis-spring.version}</version>
-		</dependency>
-		<!-- 数据库相关依赖包 (结束) -->
-
 		<!-- springSource (开始) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -201,13 +112,6 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 		<!-- springSource (结束) -->
-
-		<!-- Hibernate-validator -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator.version}</version>
-		</dependency>
 
 	</dependencies>
 	<build>

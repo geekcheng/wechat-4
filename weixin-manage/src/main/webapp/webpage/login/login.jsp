@@ -27,7 +27,7 @@
 	<div class="main_box">
 		<div class="login_box">
 			<div class="login_logo">
-				<label><span>微信后台管理系统登录</span></label> 
+				<label><span>${_currProject }</span></label> 
 			</div>
 		
 			<div class="login_form">

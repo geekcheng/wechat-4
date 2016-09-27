@@ -181,4 +181,14 @@
 		delete from sys_manager_manageruser where id = #{id}
 	</delete>
 	
+	<!-- 获取用户的角色  -->
+	<select id="getUserRole" parameterType="com.cdeledu.model.rbac.ManagerUser"
+		resultType="com.cdeledu.model.rbac.ManagerUserRole">
+		SELECT 	
+			smur.userId,smur.roleId,smr.roleName 
+		FROM 
+			sys_manager_user_role smur
+		INNER JOIN sys_manager_role smr ON smr.id = smur.roleId AND smr.enabled = 1
+		WHERE smur.userId =#{id} 
+	</select>
 </mapper>

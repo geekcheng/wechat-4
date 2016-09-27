@@ -1,7 +1,8 @@
 package com.cdeledu.model.rbac;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import com.cdeledu.model.base.IdEntity;
 
 /**
  * @类描述: 菜单表实体类
@@ -10,10 +11,9 @@ import java.util.Date;
  * @版本: V1.0
  * @since: JDK 1.7
  */
-public class AuthBean implements Serializable {
+public class AuthBean extends IdEntity {
 
 	private static final long serialVersionUID = 1L;
-	private Integer id;
 	// 菜单名称
 	private String authName;
 	// 菜单路径
@@ -29,17 +29,15 @@ public class AuthBean implements Serializable {
 	// 级别
 	private Integer level;
 	// 排序
-	private Integer sort;
+	private Integer authSort;
+	// 创建人
+	private Integer creater;
 	// 创建时间
 	private Date createTime;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	// 修改人
+	private Integer modifier;
+	// 更新时间
+	private Date modifyTime;
 
 	public String getAuthName() {
 		return authName;
@@ -97,12 +95,20 @@ public class AuthBean implements Serializable {
 		this.level = level;
 	}
 
-	public Integer getSort() {
-		return sort;
+	public Integer getAuthSort() {
+		return authSort;
 	}
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
+	public void setAuthSort(Integer authSort) {
+		this.authSort = authSort;
+	}
+
+	public Integer getCreater() {
+		return creater;
+	}
+
+	public void setCreater(Integer creater) {
+		this.creater = creater;
 	}
 
 	public Date getCreateTime() {
@@ -111,5 +117,21 @@ public class AuthBean implements Serializable {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public Integer getModifier() {
+		return modifier;
+	}
+
+	public void setModifier(Integer modifier) {
+		this.modifier = modifier;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdeledu.dao.ManagerUserDao;
 import com.cdeledu.model.rbac.ManagerUser;
+import com.cdeledu.model.rbac.ManagerUserRole;
 import com.cdeledu.service.ManagerUserService;
 import com.cdeledu.util.PasswordUtil;
 
@@ -44,8 +45,11 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	/**
 	 * 删除用户通过主键
 	 */
-	public int deleteByPrimaryKey(List<Integer> uid) {
-		return managerUserDao.deleteByPrimaryKey(uid);
+	public int deleteByPrimaryKey(Object key) {
+		return managerUserDao.deleteByPrimaryKey(key);
+	}
+	public int updateEntitie(ManagerUser record) {
+		return managerUserDao.updateEntitie(record);
 	}
 
 	/**
@@ -99,8 +103,8 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	/**
 	 * 获取用户的角色
 	 */
-	public String getUserRole(ManagerUser managerUser) {
-		return null;
+	public ManagerUserRole getUserRole(ManagerUser managerUser) {
+		return managerUserDao.getUserRole(managerUser);
 	}
 
 	/**
@@ -108,6 +112,12 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	 */
 	public void saveLoginInfo(ManagerUser managerUser) {
 
+	}
+
+	/**
+	 * admin账户初始化
+	 */
+	public void pwdInit(ManagerUser managerUser) {
 	}
 
 }

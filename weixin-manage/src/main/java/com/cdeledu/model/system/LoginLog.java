@@ -1,7 +1,8 @@
 package com.cdeledu.model.system;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import com.cdeledu.model.base.IdEntity;
 
 /**
  * @类描述: 登录日志表
@@ -11,9 +12,8 @@ import java.util.Date;
  * @since: JDK 1.7
  * @see <a href=""></a>
  */
-public class LoginLog implements Serializable {
+public class LoginLog extends IdEntity {
 	private static final long serialVersionUID = 1L;
-	private Integer id;
 	// 登录人
 	private Integer userCode;
 	// 登录时间
@@ -32,84 +32,72 @@ public class LoginLog implements Serializable {
 	private String logContent;
 	// 记录时间
 	private Date createTime;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+	private String createTime_start;
+	private String createTime_end;
 	public Integer getUserCode() {
 		return userCode;
 	}
-
 	public void setUserCode(Integer userCode) {
 		this.userCode = userCode;
 	}
-
 	public Date getLoginTime() {
 		return loginTime;
 	}
-
 	public void setLoginTime(Date loginTime) {
 		this.loginTime = loginTime;
 	}
-
 	public String getIpAddress() {
 		return ipAddress;
 	}
-
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
-
 	public Integer getLoginStatus() {
 		return loginStatus;
 	}
-
 	public void setLoginStatus(Integer loginStatus) {
 		this.loginStatus = loginStatus;
 	}
-
 	public Integer getBrower() {
 		return brower;
 	}
-
 	public void setBrower(Integer brower) {
 		this.brower = brower;
 	}
-
 	public Integer getLogLeavel() {
 		return logLeavel;
 	}
-
 	public void setLogLeavel(Integer logLeavel) {
 		this.logLeavel = logLeavel;
 	}
-
 	public Integer getOpType() {
 		return opType;
 	}
-
 	public void setOpType(Integer opType) {
 		this.opType = opType;
 	}
-
 	public String getLogContent() {
 		return logContent;
 	}
-
 	public void setLogContent(String logContent) {
 		this.logContent = logContent;
 	}
-
 	public Date getCreateTime() {
 		return createTime;
 	}
-
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	public String getCreateTime_start() {
+		return createTime_start;
+	}
+	public void setCreateTime_start(String createTime_start) {
+		this.createTime_start = createTime_start;
+	}
+	public String getCreateTime_end() {
+		return createTime_end;
+	}
+	public void setCreateTime_end(String createTime_end) {
+		this.createTime_end = createTime_end;
 	}
 }
