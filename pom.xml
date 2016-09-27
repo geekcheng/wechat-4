@@ -62,7 +62,7 @@
 		<!-- log4j日志文件管理包版本 -->
 		<slf4j.version>1.6.1</slf4j.version>
 		<log4j.version>1.2.16</log4j.version>
-		
+
 		<!-- JDK版本 -->
 		<java.version>1.7</java.version>
 		<javax.version>7.0</javax.version>
@@ -70,13 +70,13 @@
 		<jstl.version>1.2</jstl.version>
 		<servlet-api.version>2.5</servlet-api.version>
 
-		<!-- spring 版本号  -->
+		<!-- spring 版本号 -->
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
 		<!-- spring security 版本号 -->
-		<org.springframework.security.version></org.springframework.security.version>
+		<org.springframework.security.version />
 		<!-- Hibernate 版本号 -->
-		<hibernate.version></hibernate.version>
+		<hibernate.version />
 		<hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
 
 		<!-- 数据库版本号 -->
@@ -106,6 +106,7 @@
 		<module>weixin-manage</module>
 		<module>GeneratorSqlmap</module>
 		<module>weixin-generatorSql</module>
+		<module>wechat-utils</module>
 	</modules>
 
 	<!-- ======== <dependency></dependency>===================================================== 
@@ -136,25 +137,113 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 			<exclusions>
-            <exclusion>
-                <artifactId>mail</artifactId>
-                <groupId>javax.mail</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>jms</artifactId>
-                <groupId>javax.jms</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>jmxtools</artifactId>
-                <groupId>com.sun.jdmk</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>jmxri</artifactId>
-                <groupId>com.sun.jmx</groupId>
-            </exclusion>
-        </exclusions>
+				<exclusion>
+					<artifactId>mail</artifactId>
+					<groupId>javax.mail</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jms</artifactId>
+					<groupId>javax.jms</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxtools</artifactId>
+					<groupId>com.sun.jdmk</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxri</artifactId>
+					<groupId>com.sun.jmx</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- 日志输出依赖包 (结束) -->
+
+		<!-- web 依赖包(开始) -->
+		<!-- 以防止JSP页面报错所引入的 -->
+		<!-- javaee-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javax.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- javaee-web-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>${javax.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- web 依赖包(结束) -->
+
+		<!-- 数据库相关依赖包 (开始) -->
+		<!-- MSYQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- C3P0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- 数据源 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<!-- 数据库相关依赖包 (结束) -->
 
 		<!-- 简单的Java库，用于将一个对象到另一个对象(开始) -->
 		<dependency>
@@ -273,15 +362,10 @@
 			<version>1.4</version>
 			<scope>runtime</scope>
 			<exclusions>
-            <!-- <exclusion>
-                <artifactId>xercesImpl</artifactId>
-                <groupId>xerces</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>commons-collections</artifactId>
-                <groupId>commons-collections</groupId>
-            </exclusion> -->
-        </exclusions>
+				<!-- <exclusion> <artifactId>xercesImpl</artifactId> <groupId>xerces</groupId> 
+					</exclusion> <exclusion> <artifactId>commons-collections</artifactId> <groupId>commons-collections</groupId> 
+					</exclusion> -->
+			</exclusions>
 		</dependency>
 		<!-- commons-dbutils -->
 		<dependency>
@@ -352,11 +436,8 @@
 		<!-- Apache Commons (结束) -->
 
 		<!--语词分析 anltr (开始) -->
-		<!-- <dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr</artifactId>
-			<version>3.5.2</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.antlr</groupId> <artifactId>antlr</artifactId> 
+			<version>3.5.2</version> </dependency> -->
 		<!--语词分析 anltr(结束) -->
 
 		<!-- 网络爬虫:页面分析工具 (开始) -->
@@ -452,11 +533,8 @@
 			<artifactId>pinyin4j</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>ant</groupId>
-			<artifactId>ant</artifactId>
-			<version>1.6.5</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>ant</groupId> <artifactId>ant</artifactId> <version>1.6.5</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
