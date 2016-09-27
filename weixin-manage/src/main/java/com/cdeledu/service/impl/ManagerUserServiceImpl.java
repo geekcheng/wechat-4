@@ -32,6 +32,8 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	 * 保存用户基本信息
 	 */
 	public int insertSelective(ManagerUser record) {
+		String newPassWord = PasswordUtil.encrypt(record.getUserName(), record.getPassword());
+		record.setPassword(newPassWord);
 		return managerUserDao.insertSelective(record);
 	}
 
@@ -118,6 +120,12 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	 * admin账户初始化
 	 */
 	public void pwdInit(ManagerUser managerUser) {
+	}
+
+	/**
+	 * 保存用户-角色关联关系
+	 */
+	public void saveRoleUser(ManagerUserRole managerUserRole) {
 	}
 
 }

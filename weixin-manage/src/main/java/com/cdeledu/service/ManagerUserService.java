@@ -15,4 +15,8 @@ public interface ManagerUserService extends BaseService<ManagerUser> {
 
 	/** admin账户初始化 */
 	public void pwdInit(ManagerUser managerUser);
+
+	/** 保存用户-角色关联关系 */
+	public void saveRoleUser(ManagerUserRole managerUserRole);
+
 }
