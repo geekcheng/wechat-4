@@ -43,7 +43,7 @@ public interface BaseDao<T> {
 	/**
 	 * 根据实体类中字段不为null的条件进行删除,条件全部使用=号and条件
 	 */
-	int delete(T key);
+	int delete(T record);
 
 	/**
 	 * 通过主键进行删除,这里最多只会删除一条数据 <br/>
@@ -51,11 +51,6 @@ public interface BaseDao<T> {
 	 * 联合主键时,key可以是实体类,也可以是Map
 	 */
 	int deleteByPrimaryKey(Object key);
-
-	/**
-	 * 更新指定的实体
-	 */
-	int updateEntitie(T record);
 
 	/**
 	 * 根据主键进行更新,这里最多只会更新一条数据 <br/>

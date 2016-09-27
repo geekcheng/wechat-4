@@ -12,4 +12,6 @@ public interface ManagerUserDao extends BaseDao<ManagerUser> {
 
 	/** 保存管理员登录信息 */
 	public void saveLoginInfo(ManagerUser managerUser);
+	/** 保存用户-角色关联关系 */
+	public void saveRoleUser(ManagerUserRole managerUserRole);
 }
