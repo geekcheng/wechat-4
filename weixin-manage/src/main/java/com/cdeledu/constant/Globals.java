@@ -8,44 +8,26 @@ package com.cdeledu.constant;
  * @since: JDK 1.7
  */
 public final class Globals {
-	/**
-	 * 验证码
-	 */
+	/** 验证码 */
 	public static final String IMAGECAPTCHA = "imageCaptcha";
-	/**
-	 * 过滤标识，防止一次请求多次过滤
-	 */
+	/** 过滤标识，防止一次请求多次过滤 */
 	public static final String FILTERED_REQUEST = "@@session_context_filtered_request";
-	/**
-	 * 保存用户到SESSION
-	 */
+	/** 保存用户到SESSION */
 	public static final String USER_SESSION = "USER_SESSION";
-
-	/**
-	 * 将登录前的URL放到Session中的键名称
-	 */
+	/** 将登录前的URL放到Session中的键名称 */
 	public static final String LOGIN_TO_URL = "toUrl";
-	/**
-	 * 需要登录即可访问的URI资源
-	 */
+	/** 需要登录即可访问的URI资源 */
 	public static final String[] INHERENT_URIS = { "/select", "/find", "/get", "/add", "/save",
-			"/insert", "/edit", "/update", "/delete" };
-
-	/**
-	 * 人员类型
-	 */
-	//public static final Short User_Normal = 1;// 正常
-	//public static final Short User_Forbidden = 0;// 禁用
-	//public static final Short User_ADMIN = -1;// 超级管理员
-	/**
-	 * 日志级别定义
-	 */
+			"/insert", "/edit", "/update", "/delete", "/bathDel" };
+	/** 人员类型 */
+	public static final Short User_Normal = 1;// 正常
+	public static final Short User_Forbidden = 0;// 禁用
+	public static final Short User_ADMIN = -1;// 超级管理员
+	/** 日志级别定义 */
 	public static final Integer Log_Leavel_INFO = 1;
 	public static final Integer Log_Leavel_WARRING = 2;
 	public static final Integer Log_Leavel_ERROR = 3;
-	/**
-	 * 日志类型
-	 */
+	/** 日志类型 */
 	public static final Integer Log_Type_LOGIN = 1; // 登陆
 	public static final Integer Log_Type_EXIT = 2; // 退出
 	public static final Integer Log_Type_INSERT = 3; // 插入
