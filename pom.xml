@@ -9,7 +9,7 @@
 	<!--构件的标识符，它和group ID一起唯一标识一个构件.在某个特定的group ID下,artifact ID也必须是唯一的。构件是项目产生的或使用的一个东西，Maven为项目产生的构件包括：JARs，源码，二进制发布和WARs等。 -->
 	<artifactId>wechat</artifactId>
 	<!--项目当前版本,格式为:主版本.次版本.增量版本-限定版本号 -->
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<!--项目产生的构件类型,例如jar、war、ear、pom.插件可以创建他们自己的构件类型,所以前面列的不是全部构件类型 -->
 	<packaging>pom</packaging>
 
@@ -104,7 +104,7 @@
 		<module>weixin-qy</module>
 		<module>weixin-server</module>
 		<module>weixin-manage</module>
-		<module>GeneratorSqlmap</module>
+		
 		<module>weixin-generatorSql</module>
 		<module>wechat-utils</module>
 	</modules>
