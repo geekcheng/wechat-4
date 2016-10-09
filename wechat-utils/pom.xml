@@ -7,9 +7,7 @@
     <artifactId>wechat</artifactId>
     <version>1.0.1</version>
   </parent>
-  <groupId>com.cdeledu</groupId>
   <artifactId>wechat-utils</artifactId>
-  <version>1.0.1</version>
   <name>wechat-utils</name>
   <url>http://maven.apache.org</url>
   <properties>

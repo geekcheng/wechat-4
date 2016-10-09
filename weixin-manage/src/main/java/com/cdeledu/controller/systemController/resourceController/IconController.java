@@ -1,8 +1,5 @@
 package com.cdeledu.controller.systemController.resourceController;
 
-import java.io.File;
-import java.io.FileWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdeledu.controller.BaseController;
 import com.cdeledu.model.common.AjaxJson;
-import com.cdeledu.util.ContextHolderUtils;
 
 /**
  * @类描述: 图标信息处理类
@@ -23,7 +20,7 @@ import com.cdeledu.util.ContextHolderUtils;
  */
 @Controller
 @RequestMapping("/IconController")
-public class IconController {
+public class IconController  extends BaseController{
 	/** ----------------------------------------------------- Fields start */
 	private String message;// 操作提示语
 	/** ----------------------------------------------------- Fields end */
@@ -64,7 +61,7 @@ public class IconController {
 		message = "上传成功";
 		result.setMsg(message);
 		// 图标的css样式
-		String css = ".back{background:url('../images/back.png') no-repeat;}";
+		// String css = ".back{background:url('../images/back.png') no-repeat;}";
 		return result;
 	}
 

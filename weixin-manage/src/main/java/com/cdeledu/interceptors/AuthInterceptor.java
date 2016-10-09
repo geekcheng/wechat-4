@@ -57,7 +57,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 		}
 		SessionInfo sessioninfo = (SessionInfo) ContextHolderUtils.getSession().getAttribute(Globals.USER_SESSION);
 		Integer userId = sessioninfo.getManagerUser().getId();
-		// 查询当前登录用户是否具有当前访问地址
+		if(logger.isDebugEnabled()){
+			logger.info("查询当前登录用户是否具有当前访问地址");
+		}
 		Integer resultCount = systemService.getAuthByuserIdAndAuthPath(userId, requestPath);
 		if(null !=resultCount && resultCount > 0)
 			return true;

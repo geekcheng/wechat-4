@@ -18,7 +18,6 @@ import com.cdeledu.controller.BaseController;
 import com.cdeledu.model.common.AjaxJson;
 import com.cdeledu.model.common.SessionInfo;
 import com.cdeledu.model.rbac.ManagerUser;
-import com.cdeledu.model.rbac.ManagerUserRole;
 import com.cdeledu.model.system.LoginLog;
 import com.cdeledu.service.ManagerUserService;
 import com.cdeledu.service.SystemService;
@@ -170,7 +169,7 @@ public class LoginController extends BaseController {
 			return new ModelAndView(new RedirectView("loginController.do?login"));
 		}
 		
-		ManagerUserRole currentUser =	manageruserService.getUserRole(managerUser);
+		// ManagerUserRole currentUser =	manageruserService.getUserRole(managerUser);
 		
 		return new ModelAndView("main/left");
 	}
