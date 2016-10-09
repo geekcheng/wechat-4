@@ -18,7 +18,7 @@
 		<!-- 配置子项目的相关调用 -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>weixin-mp</artifactId>
+			<artifactId>wechat-utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!-- 配置子项目的相关调用 -->
