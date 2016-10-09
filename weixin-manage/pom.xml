@@ -12,8 +12,7 @@
 	<artifactId>weixin-manage</artifactId>
 	<packaging>war</packaging>
 	<name>weixin-manage webApp</name>
-	<url>http://maven.apache.org</url>
-	<description>微信功能后台管理系统</description>
+	<url>https://github.com/dllwh/wechat/tree/master/weixin-manage</url>
 	<dependencies>
 		<!-- 配置子项目的相关调用 -->
 		<dependency>
@@ -138,4 +137,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<description>综合信息服务管理平台</description>
 </project>
