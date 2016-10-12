@@ -31,11 +31,6 @@ public interface BaseService<T> {
 	int deleteByPrimaryKey(Object key);
 
 	/**
-	 * 更新指定的实体
-	 */
-	int updateEntitie(T record);
-
-	/**
 	 * 根据主键进行更新,这里最多只会更新一条数据 <br/>
 	 * 参数为实体类
 	 */

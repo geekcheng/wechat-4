@@ -50,9 +50,6 @@ public class ManagerUserServiceImpl implements ManagerUserService {
 	public int deleteByPrimaryKey(Object key) {
 		return managerUserDao.deleteByPrimaryKey(key);
 	}
-	public int updateEntitie(ManagerUser record) {
-		return managerUserDao.updateEntitie(record);
-	}
 
 	/**
 	 * 更新用户信息

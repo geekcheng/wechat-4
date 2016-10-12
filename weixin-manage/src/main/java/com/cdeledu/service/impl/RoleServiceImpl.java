@@ -31,11 +31,6 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public int updateEntitie(Role record) {
-		return roleDao.updateEntitie(record);
-	}
-
-	@Override
 	public int updateByPrimaryKey(Role record) {
 		return roleDao.updateByPrimaryKey(record);
 	}
